@@ -16,8 +16,12 @@ def sellhome(request):
     return render(request, 'sellhome.html')
 
 def buy(request):
-    properti = Properti.objects.filter(status = "Sale")
-    content = {'property':properti}
+    if search:
+        buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
+        content = {'property':buy}
+    else:
+        properti = Properti.objects.filter(status = "Sale")
+        content = {'property':properti}
     return render(request, 'buy.html', content)
 
 def homeloan(request):
