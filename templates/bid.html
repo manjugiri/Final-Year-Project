@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div>
+    <p>Bid Here</p>
+    <div class="bid-now" style="display:flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;">
+    <div class="col-md-4 item-block animate-box" style="padding-top: 70px;" data-animate-effect="fadeIn">
+        <div class="fh5co-property">
+        <figure>
+            <img src="images/slide_3.jpg" alt="" class="img-responsive">
+            <!-- <a href="#" class="tag">For Sale</a> -->
+        </figure>
+        <div class="fh5co-property-innter">
+            <h3><a href="#">Villa In Hialeah, Dade County</a></h3>
+            <div class="price-status"> <p>Minimimum amount : <span class="price">$540,000 </span></p>
+                    
+            </div>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
+            </div>
+            <p class="fh5co-property-specification">
+                <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
+            </p>
+        </div>
+    </div>
+    <br>
+
+    <div class="bid-block" style="position: relative;">
+        
+        <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter bid amount">
+            <input class="input100" type="text" name="BIdamt">
+            <span class="focus-input100" data-placeholder="Enter your Bid Amount"></span>
+        </div>
+        <div class="container-login100-form-btn">
+            <button class="login100-form-btn">
+            BId now
+            </button>
+        </div>
+    </div>
+    <br>
+    <br><br>
+
+    <h3><a href="#">View all bid of this proeprty</a></h3>
+
+    
+    </div>
+</div>
+</div>
+
+<br>
+
+
+
+{% endblock content %}

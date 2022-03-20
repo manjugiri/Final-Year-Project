@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="main-div" id="bg-img" style="margin-top: 75px;">
+        
+  <div class="div2" id="perfecthome">
+    <h1 class="colored" style="color:aquamarine; margin-top: 70px;">Find your perfect Home</h1>
+  </div>
+  <div class="div3">
+    <div class="div3-0">
+      <div class="div3-01" >
+        <input type="text">
+        <span class="search" style="    background-color: white;">
+          <button><i class="fas fa-search"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="bg-light pb-5 shadow-sm">
+<div class="container">
+  <div class="row pt-5">
+      <div class="col-12">
+          <h2 class="text-header">
+              <span>
+                  Whether you’re buying, selling or renting, we can help you move forward.
+              </span>
+          </h2>
+      </div>
+  </div>
+  <div class="row">
+      <!--ADD CLASSES HERE d-flex align-items-stretch-->
+      <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+          <div class="card" style="width: 25rem;">
+              <img src="{% static '/home.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Buy a home</h5>
+                  <p class="card-text">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
+                  <a href="/buy" class="btn btn-success">Search homes</a>
+              </div>
+          </div>
+      </div>
+      <!--ADD CLASSES HERE d-flex align-items-stretch-->
+      <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+          <div class="card" style="width: 25rem;">
+              <img src="{% static '/buy.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Sell a home</h5>
+                  <p class="card-text">No matter what path you take to sell your home, we can help you navigate a successful sale.</p>
+                  <a href="/sellhome" class="btn btn-success">See Your Options</a>
+              </div>
+          </div>
+      </div>
+      
+      <!--ADD CLASSES HERE d-flex align-items-stretch-->
+      <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+          <div class="card" style="width: 25rem;">
+              <img src="{% static '/rent.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Rent a home</h5>
+                  <p class="card-text">We’re creating a seamless online experience – from shopping on the largest rental network, to applying, to paying rent.</p>
+                  <a href="/rent" class="btn btn-success">Find Rentals</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+{% endblock content %}
