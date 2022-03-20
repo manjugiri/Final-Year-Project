@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db.models import Q
+from .models import Properti
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -14,12 +16,22 @@ def sellhome(request):
     return render(request, 'sellhome.html')
 
 def buy(request):
-    return render(request, 'buy.html')
+    properti = Properti.objects.filter(status = "Sale")
+    content = {'property':properti}
+    return render(request, 'buy.html', content)
+
 def homeloan(request):
     return render(request, 'homeloan.html')
 
 def rent(request):
-    return render(request, 'rent.html')
+    search = request.GET.get('search') if request.GET.get('search') != None else ''
+    if search:
+        rent = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
+        content = {'rent':rent}
+    else:
+        rent_properti = Properti.objects.filter(status = "Rent")
+        content = {'rent': rent_properti,}
+    return render(request, 'rent.html',content)
 
 def auction(request):
     return render(request, 'auction.html')
