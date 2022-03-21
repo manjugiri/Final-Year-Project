@@ -16,6 +16,7 @@ def sellhome(request):
     return render(request, 'sellhome.html')
 
 def buy(request):
+    search = request.GET.get('search') if request.GET.get('search') != None else ''
     if search:
         buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
         content = {'property':buy}
