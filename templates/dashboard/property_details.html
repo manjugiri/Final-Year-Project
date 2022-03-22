@@ -1,0 +1,125 @@
+{% extends 'dashboard/dashboard_head.html' %}
+{% block content %}
+<head>
+ 
+    <style>
+        img {
+      max-width: 100%;
+      max-height: 100%;
+     }
+     .aside {
+      height: 100px;
+      width: 100px;
+     }
+    </style>
+
+  </head>
+
+        <!-- main -->
+      
+            <h3>Properties </h3>
+            <hr>
+
+                <!-- ============================ COMPONENT 1 ================================= -->
+                
+                <div class="row">
+                <div class="card">
+                <table class="table table-borderless">
+                <thead class="text-muted">
+                <tr class="small text-uppercase">
+                    <th scope="col" width="10">S/N</th>
+                  <th scope="col" width="120">Image</th>
+                  <th scope="col" width="300">Title</th>
+                  <th scope="col" width="150">Area(sq ft)</th>
+                  <th scope="col" width="120">Category</th>
+                  <th scope="col" width="250">Address</th>
+                  <th scope="col" width="120">Price</th>
+                  <th scope="col" class="text-center" width="200"> Update</th>
+                  <th scope="col" class="text-center" width="200"> Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="aside">
+                            <p>1</p>
+                        </div>  
+                    </td>
+                    <td>
+                        <figure class="itemside align-items-center">
+                            <div class="aside"><img src="profile.jpg" class="img-rounded"></div>
+                        </figure>
+                    </td>
+                    <td>
+                        <figcaption class="info">
+                            <a href="#" class="title text-dark">Rishi Investment Bank</a>
+                            <p class="text-muted small">Faced: Direction</p>
+                        </figcaption>
+
+                    </td>
+                    <td> 
+                        <small class="text-muted">12000 sq ft</small> 
+                    </td>
+                    <td>  
+                        <samp class="text-muted">Rent</samp> 
+                    </td>
+                    <td> 
+                        <p class="text-muted"> Upto 15 Yrs And More Years </p> 
+
+                    </td>
+                    <td> 
+                        <p class="text-muted"> $1,000,000 </p>
+                    </td>
+                    <td class="text-center"> 
+                    <a href="" class="btn btn-info"> Update</a>
+                    </td>
+                    <td class="text-center"> 
+                        <a href="" class="btn btn-warning"> Remove</a>
+                        </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="aside">
+                            <p>1</p>
+                        </div>  
+                    </td>
+                    <td>
+                        <figure class="itemside align-items-center">
+                            <div class="aside"><img src="images/1.png" class="img-rounded"></div>
+                        </figure>
+                    </td>
+                    <td>
+                        <figcaption class="info">
+                            <a href="#" class="title text-dark">Rishi Investment Bank</a>
+                            <p class="text-muted small">Faced: Direction</p>
+                        </figcaption>
+
+                    </td>
+                    <td> 
+                        <small class="text-muted">12000 sq ft</small> 
+                    </td>
+                    <td>  
+                        <samp class="text-muted">Rent</samp> 
+                    </td>
+                    <td> 
+                        <p class="text-muted"> Upto 15 Yrs And More Years </p> 
+
+                    </td>
+                    <td> 
+                        <p class="text-muted"> $1,000,000 </p>
+                    </td>
+                    <td class="text-center"> 
+                    <a href="" class="btn btn-info"> Update</a>
+                    </td>
+                    <td class="text-center"> 
+                        <a href="" class="btn btn-warning"> Remove</a>
+                        </td>
+                </tr>
+                </tbody>
+                </table>
+            </div> 
+        </div>
+        <h3 class="text-right"><a href="/addproperty" class="btn btn-primary">Add Property</a></h3>
+
+{% endblock content %}
+

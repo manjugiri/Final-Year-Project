@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-
-{% block content %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -12,28 +9,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-    <!-- <title>Dashboard</title> -->
+    <title>Dashboard</title>
   </head>
   <body>
       <!-- navbar -->
-      <!-- <div class="navbar navbar-light flex-md-nowrap p-0 shadow" style="background-color: #e3f2fd; height: 70px" >
+      <div class="navbar navbar-light flex-md-nowrap p-0 shadow" style="background-color: #e3f2fd; height: 70px; z-index: 99;" >
           <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Dashboard</a>
-          <<input type="text" class="form-control form-control-primary w-100" placeholder="Search" aria-label="Search"> -->
-          <!-- <ul class="navbar-nav px-3">
+          <!-- <input type="text" class="form-control form-control-primary w-100" placeholder="Search" aria-label="Search"> -->
+          <ul class="navbar-nav px-3">
               
               <li class="nav-item text-nowrap">
                   
                   <a class="nav-link" href="#">Log out</a>
               </li>
           </ul>
-      </div> --> -->
+      </div>
 
 
     <!-- container -->
-<div class="container-fluid" style="margin-top: 100px;">
+<div class="container-fluid" style="margin-top: 15px;">
   <div class="row">
       <!-- sidebar -->
-      <!-- <div class="col-md-2 bg-light d-none d-md-block sidebar">
+      <div class="col-md-2 bg-light d-none d-md-block sidebar">
           <div class="left-sidebar">
               <ul class="nav flex-column sidebar-nav">
                   <li class="nav-item">
@@ -42,7 +39,7 @@
                       Profile</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="add_property.html">
+                    <a class="nav-link" href="/propertydetails">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
                       Add Property
                   </a>
@@ -59,25 +56,15 @@
                   </li>
                 </ul>
           </div>
-      </div> -->
+      </div>
 
 
       <!-- main -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
-		<h3>
-			Become Agent
-		  </h3>
-		  <hr>
-		  <div class="container">
-			<div class="card text-center">
-				<div class="card-body">
-				  <h2 class="card-title">Apply to become an Agent</h2><br>
-				  <p class="card-text">Agent will have extra benefits like verified property listing and agent profile.  </p><br>
-				  <a href="/applyagent" class="btn btn-primary">Apply for Agent</a>
-				</div>
-			</div>
-		  </div>
+        {% block content %}
+
+        {% endblock content %}
       </main>
 
   </div>
@@ -89,6 +76,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-{% endblock content %}

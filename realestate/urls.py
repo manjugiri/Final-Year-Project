@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import index, login, signup, sellhome, buy, agent, auction, rent, homeloan, bid, applyagent, dashboard
+from .views import addproperty, index, login, signup, sellhome, buy, agent, auction, rent, homeloan, bid, applyagent, dashboard, propertydetails, addproperty
 
 # admin.site.site_header = "REMS"
 # admin.site.site_title = "welcome to REMS"
@@ -20,5 +20,7 @@ urlpatterns = [
     path('bid', bid),
     path('applyagent', applyagent),
     path('dashboard', dashboard),
+    path('propertydetails', propertydetails),
+    path('addproperty', addproperty),
 
 ]

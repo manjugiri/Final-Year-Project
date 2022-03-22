@@ -51,7 +51,13 @@ def bid(request):
     return render(request, 'bid.html')
 
 def applyagent(request):
-    return render(request, 'applyagent.html')
+    return render(request, 'dashboard/apply_agent.html')
 
 def dashboard(request):
-    return render(request, 'dashboard/index.html')
+    return render(request, 'dashboard/profile.html')
+
+def propertydetails(request):
+    return render(request, 'dashboard/property_details.html')
+
+def addproperty(request):
+    return render(request, 'dashboard/add_property.html')
