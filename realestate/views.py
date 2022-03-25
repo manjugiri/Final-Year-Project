@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from .forms import addprop
-from realestate.forms import addprop
 from .models import Properti
 # Create your views here.
 def index(request):
@@ -62,10 +61,12 @@ def propertydetails(request):
     return render(request, 'dashboard/property_details.html')
 
 def addproperty(request):
+    fm = addprop()
     if request.method == 'POST':
-     fm = addprop(request.POST)
-     if fm.is_valid():
-        fm.save()
-    else:
-        fm = addprop()
+        fm = addprop(request.POST,request.FILES)
+        if fm.is_valid():
+            fm.save()
+            return redirect('home')
+        else:
+            print('form is not valid')
     return render(request, 'dashboard/add_property.html', {'form':fm})
