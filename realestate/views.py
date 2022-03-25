@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q
+from .forms import addprop
+from realestate.forms import addprop
 from .models import Properti
 # Create your views here.
 def index(request):
@@ -60,4 +62,10 @@ def propertydetails(request):
     return render(request, 'dashboard/property_details.html')
 
 def addproperty(request):
-    return render(request, 'dashboard/add_property.html')
+    if request.method == 'POST':
+     fm = addprop(request.POST)
+     if fm.is_valid():
+        fm.save()
+    else:
+        fm = addprop()
+    return render(request, 'dashboard/add_property.html', {'form':fm})
