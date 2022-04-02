@@ -60,16 +60,56 @@
 		</div> -->
 	</div>
 	<div id="best-deal">
-		<form>
+		<!-- <form>
 			<input type="text" placeholder="Search. . . " name = "search">
 
-		</form>
+		</form> -->
+		<div class="col-md-3">
+								<div class="col-md-12">
+									
+								<form>
+										<select class='form-control' name="property_type" id="select-by-type" onchange="this.form.submit()">
+											
+											<option value="All">Filter By Type</option>
+											<option value="Home" {%if property_type == 'Home'%}selected{%endif%}>Home</option>
+											<option value="Land" {%if property_type == 'Land'%}selected{%endif%}>Land</option>
+											<option value="Room" {%if property_type == 'Room'%}selected{%endif%}>Room</option>
+										</select>
+
+										<input type="hidden" name="sort_by" value="{{sort_by}}">
+									</form>
+
+									</div>
+		
+
+							<div class="col-md-12">
+								<form>
+										<select class='form-control' name="sort_by" id="select-by-type" onchange="this.form.submit()">
+											
+											<option value="none_">Sort By</option>
+											<option value="lh" {%if sort_by == 'lh'%}selected{%endif%}>Low to High</option>
+											<option value="hl" {%if sort_by == 'hl'%}selected{%endif%}>High to Low</option>
+										</select>
+										<input type="hidden" name="property_type" value="{{property_type}}">
+
+									</form>
+										
+								
+							</div>
+
+				</div>
 		<div class="container">
+
 			<div class="row">
+
+
+
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
 					<h2>We are Offering the Best Real Estate Deals</h2>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 				</div>
+
+
 				{% for rent in rent %}
 				<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 					<div class="fh5co-property">
@@ -78,7 +118,7 @@
 							<a href="#" class="tag">For Rent</a>
 						</figure>
 						<div class="fh5co-property-innter">
-							<h3><a href="#">{{rent.title}}, {{rent.address}}</a></h3>
+							<h3><a href="{%url 'property_detail' rent.id%}">{{rent.title}}, {{rent.address}}</a></h3>
 							<div class="price-status">
 		                 	<span class="price">${{rent.price}}<span class="per">/Month</span></span>
 		               </div>

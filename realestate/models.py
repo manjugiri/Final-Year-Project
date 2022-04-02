@@ -12,6 +12,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 STATUS_CHOICES = [
     ('Rent', 'Rent'),
     ('Sale', 'Sale'),
+    ('Auction', 'Auction')
 ]
 
 TYPE_CHOICES = [
@@ -48,6 +49,7 @@ class Properti(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     slug = models.SlugField(blank=True, null=True, unique=True)
     seodescription = models.TextField(blank=True)
+    bidding_end_time = models.DateField(blank=True, null=True)
 
     class Meta:
         verbose_name = "Property"
@@ -78,3 +80,11 @@ class Properti(models.Model):
         uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', "%s.jpg" % uploadedImage.name.split('.')[
 0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
         return uploadedImage
+
+
+
+# class Bidders(models.Model):
+#     properti = models.ForeignKey(Properti, related_name = 'bidders', on_delete=models.CASCADE)
+#     bid_amount = models.FloatField()
+#     user = models.OneToOneField(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
+
