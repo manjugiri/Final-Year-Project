@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import * #addproperty, index, login, signup, sellhome, buy, agent, auction, rent, homeloan, bid, applyagent, dashboard, propertydetails, addproperty
+from .views import * #addproperty, index, login, signup, sellhome, buy, agent, auction, rent, homeloan, bid, applyagent, dashboard, propertydetails, addproperty, property_detail
 
 # admin.site.site_header = "REMS"
 # admin.site.site_title = "welcome to REMS"
