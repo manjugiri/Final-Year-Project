@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from .forms import addprop
 from .models import Properti
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -41,7 +42,7 @@ def rent(request):
     #     rent_properti = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
     # else:
     #     rent_properti = Properti.objects.filter(status = "Rent")
-    rent_properti = Properti.objects.all()
+    rent_properti = Properti.objects.filter(status="Rent")
     if property_type and not property_type=='All':
         rent_properti =rent_properti.filter(ptype = property_type)
 
@@ -93,3 +94,17 @@ def addproperty(request):
         else:
             print('form is not valid')
     return render(request, 'dashboard/add_property.html', {'form':fm})
+
+def delete(request, id):
+    remov= Properti.objects.get(id=id)
+    remov.delete()
+    return render(request, 'dashboard/property_details.html')
+
+
+@login_required
+def property_list(request):
+    if request.method == 'GET':
+        prop = Properti.objects.filter(added_by=request.user)
+        print (prop)
+    return render(request, 'dashboard/property_details.html', {'prop':prop})
+

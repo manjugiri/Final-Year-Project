@@ -20,9 +20,9 @@ urlpatterns = [
     path('bid', bid),
     path('applyagent', applyagent),
     path('dashboard', dashboard),
-    path('propertydetails', propertydetails),
+    path('propertydetails', property_list),
     path('addproperty', addproperty),
 
     path('property-detail/<int:pk>/', property_detail, name = 'property_detail'),
-
+    path('delete/<int:id>', delete, name='delete'),
 ]

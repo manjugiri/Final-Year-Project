@@ -80,12 +80,48 @@
     </div>
   </div>
 </div> -->
-<form>
-  <input type="text" placeholder="Search. . . " name = "search">
 
-</form>
+
+<!-- <form>
+  <input type="text" placeholder="Search. . . " name = "search">
+  
+</form> -->
 <div id="best-deal">
   <div class="container">
+    <div class="col-md-3">
+              <div class="col-md-12">
+                
+              <form>
+                  <select class='form-control' name="property_type" id="select-by-type" onchange="this.form.submit()">
+                    
+                    <option value="All">Filter By Type</option>
+                    <option value="Home" {%if property_type == 'Home'%}selected{%endif%}>Home</option>
+                    <option value="Land" {%if property_type == 'Land'%}selected{%endif%}>Land</option>
+                    <option value="Room" {%if property_type == 'Room'%}selected{%endif%}>Room</option>
+                  </select>
+
+                  <input type="hidden" name="sort_by" value="{{sort_by}}">
+                </form>
+
+                </div>
+
+
+            <div class="col-md-12">
+              <form>
+                  <select class='form-control' name="sort_by" id="select-by-type" onchange="this.form.submit()">
+                    
+                    <option value="none_">Sort By</option>
+                    <option value="lh" {%if sort_by == 'lh'%}selected{%endif%}>Low to High</option>
+                    <option value="hl" {%if sort_by == 'hl'%}selected{%endif%}>High to Low</option>
+                  </select>
+                  <input type="hidden" name="property_type" value="{{property_type}}">
+
+                </form>
+                  
+              
+            </div>
+
+</div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
         <h2>We are Offering the Best Real Estate Deals</h2>
@@ -95,7 +131,7 @@
       <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
         <div class="fh5co-property">
           <figure>
-            <img src="images/slide_3.jpg" alt="" class="img-responsive">
+            <img src="{{properti.photo.url}}" alt="" class="img-responsive">
             <a href="#" class="tag" style="background:#4cb648;">For Sale</a>
           </figure>
           <div class="fh5co-property-innter">

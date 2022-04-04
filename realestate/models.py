@@ -8,6 +8,9 @@ from PIL import Image
 from io import BytesIO
 import sys
 from django.core.files.uploadedfile import InMemoryUploadedFile
+
+import accounts
+from accounts.models import Account
 # Create your models here.
 STATUS_CHOICES = [
     ('Rent', 'Rent'),
@@ -49,7 +52,7 @@ class Properti(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     slug = models.SlugField(blank=True, null=True, unique=True)
     seodescription = models.TextField(blank=True)
-    bidding_end_time = models.DateField(blank=True, null=True)
+    # bidding_end_time = models.DateField(blank=True, null=True)
 
     class Meta:
         verbose_name = "Property"
@@ -87,4 +90,15 @@ class Properti(models.Model):
 #     properti = models.ForeignKey(Properti, related_name = 'bidders', on_delete=models.CASCADE)
 #     bid_amount = models.FloatField()
 #     user = models.OneToOneField(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
+# 
+
+# class Bidders(models.Model):
+#     properti = models.ForeignKey(Properti, related_name = 'bidders', on_delete=models.CASCADE)
+#     bid_amount = models.FloatField()
+#     current_bid_amount = models.FloatField()
+#     user = models.OneToOneField(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
+#     start_date = models.DateField()
+#     end_date = models.DateField()
+
+
 

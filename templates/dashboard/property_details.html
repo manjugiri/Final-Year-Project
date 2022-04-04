@@ -39,6 +39,8 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for i in prop %}
+            
                 <tr>
                     <td>
                         <div class="aside">
@@ -47,79 +49,137 @@
                     </td>
                     <td>
                         <figure class="itemside align-items-center">
-                            <div class="aside"><img src="profile.jpg" class="img-rounded"></div>
+                            <div class="aside"><img src="{{i.photo.url}}" class="img-rounded"></div>
                         </figure>
                     </td>
                     <td>
                         <figcaption class="info">
-                            <a href="#" class="title text-dark">House</a>
+                            <a href="#" class="title text-dark">{{i.title}}</a>
                             <p class="text-muted small">Faced: Direction</p>
                         </figcaption>
 
                     </td>
                     <td> 
-                        <small class="text-muted">12000 sq ft</small> 
+                        <small class="text-muted">{{i.area}} sq ft</small> 
                     </td>
                     <td>  
-                        <samp class="text-muted">Rent</samp> 
+                        <samp class="text-muted">{{i.status}}</samp> 
                     </td>
                     <td> 
-                        <p class="text-muted"> Upto 15 Yrs And More Years </p> 
+                        <p class="text-muted"> {{i.address}} </p> 
 
                     </td>
                     <td> 
-                        <p class="text-muted"> $1,000,000 </p>
+                        <p class="text-muted"> ${{i.price}} </p>
                     </td>
                     <td class="text-center"> 
                     <a href="" class="btn btn-info"> Update</a>
                     </td>
                     <td class="text-center"> 
-                        <a href="" class="btn btn-warning"> Remove</a>
+                        <button class="btn btn-warning" name="{{ i.id}}"> Remove</button>
                         </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="aside">
-                            <p>1</p>
-                        </div>  
-                    </td>
-                    <td>
-                        <figure class="itemside align-items-center">
-                            <div class="aside"><img src="images/1.png" class="img-rounded"></div>
-                        </figure>
-                    </td>
-                    <td>
-                        <figcaption class="info">
-                            <a href="#" class="title text-dark">Ghar</a>
-                            <p class="text-muted small">Faced: Direction</p>
-                        </figcaption>
-
-                    </td>
-                    <td> 
-                        <small class="text-muted">12000 sq ft</small> 
-                    </td>
-                    <td>  
-                        <samp class="text-muted">Rent</samp> 
-                    </td>
-                    <td> 
-                        <p class="text-muted"> Upto 15 Yrs And More Years </p> 
-
-                    </td>
-                    <td> 
-                        <p class="text-muted"> $1,000,000 </p>
-                    </td>
-                    <td class="text-center"> 
-                    <a href="" class="btn btn-info"> Update</a>
-                    </td>
-                    <td class="text-center"> 
-                        <a href="" class="btn btn-warning"> Remove</a>
-                        </td>
-                </tr>
+                {% endfor %}
                 </tbody>
                 </table>
             </div> 
         </div>
         <h3 class="text-right"><a href="/addproperty" class="btn btn-primary">Add Property</a></h3>
+
+
+
+<!-- <script>
+    $(document).ready(function(){
+    if($('#result') != null){
+        Read();
+    }
+    $('#create').on('click', function(){
+        $task = $('#task').val();
+        // $lastname = $('#lastname').val();
+
+        if($task != ""){
+            $.ajax({
+                url: 'create',
+                type: 'POST',
+                data: {
+                    task: $task,
+                    // lastname: $lastname,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                    Read();
+                    $('#task').val('');
+                    // $('#lastname').val('');
+                }
+            });              
+        }else {
+            alert("You can't create empty task."); 
+        }
+    });
+
+    $(document).on('click', '.edit', function(){
+        $id = $(this).attr('name');
+        window.location = "edit/" + $id;
+    });
+
+    $('#update').on('click', function(){
+        $task = $('#task').val();
+        // $lastname = $('#lastname').val();
+
+        if ($task == ""){
+            alert("You can't create empty task.");
+        }else {
+            $id = $('#todo_id').val();
+            $.ajax({
+                url: 'update/' + $id,
+                type: 'POST',
+                data: {
+                    task: $task,
+                    // lastname: $lastname,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                    window.location = '/';
+                    alert('The task has been UPDATED successfully!!!');
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.delete', function(){
+        $id = $(this).attr('name');
+        $.ajax({
+            url: 'delete/' + $id,
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(){
+                Read();
+                alert("The task has been DELETED!")
+            }
+        });
+    });
+});
+
+function Read(){
+    $.ajax({
+        url: 'read',
+        type: 'POST',
+        async: false,
+        data:{
+            res: 1,
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success: function(response){
+            $('#result').html(response);
+        }
+    });
+}
+</script> -->
+
+
+
 
 {% endblock content %}
 

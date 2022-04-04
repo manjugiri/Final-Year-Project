@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="property_slider">
-                            <img src="/static/images/slide_6.jpg"/>
+                            <img src="{{property.photo.url}}"/>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="col-md-12">
                         <div class="single_property_detail">
                             <div class="head">
-                                <h4 class="title mt-4">{{p.title}}</h4>
+                                <h4 class="title mt-4">{{property.title}}</h4>
                                 <span class=""><i class="fas fa-map-marker-alt"></i> {{p.address}} </span>
                             </div>
                             {{p.description}}<br />
