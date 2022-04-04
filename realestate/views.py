@@ -2,14 +2,27 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from .forms import addprop
-from .models import Properti
+from .models import Properti, Bidders
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+
+        user = auth.authenticate(email=email, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid email or password')
+            return render(request, 'account/login.html')
+
+    return render(request, 'account/login.html')
 
 def signup(request):
     return render(request, 'signup.html')
@@ -64,7 +77,8 @@ def property_detail(request, pk):
     return render(request, 'property_detail.html',{'property':property_})
 
 def auction(request):
-    return render(request, 'auction.html')
+    auction_property = Properti.objects.filter(status = 'Auction')
+    return render(request, 'auction.html', {"auction_property":auction_property})
 
 def agent(request):
     return render(request, 'agent.html')
@@ -72,8 +86,34 @@ def agent(request):
 def estate(request):
     return render(request, 'estate.html')
 
-def bid(request):
-    return render(request, 'bid.html')
+@login_required(login_url = '/login/')
+def bid(request, pk):
+    auction_property = get_object_or_404(Properti, id=pk)
+    user = request.user
+    try:
+        user_bid = Bidders.objects.get(properti = auction_property, user= user).bid_amount
+    except:
+        user_bid = 0
+    if request.method == 'GET':
+        
+        return render(request, 'bid.html', {'auction_property':auction_property, 'status':'','user_bid':user_bid})
+
+    if request.method == 'POST':
+        bidamt = request.POST.get('BIdamt',None)
+        if int(bidamt) < int(auction_property.price):
+            error = f'Bid amount must be grater than {auction_property.price}'
+            return render(request, 'bid.html', {'auction_property':auction_property,'status':error})
+        
+        if Bidders.objects.filter(user=request.user, properti=auction_property).exists():
+            Bidders.objects.filter(user=request.user, properti=auction_property).update(bid_amount=bidamt)
+        else:
+            Bidders.objects.create(properti = auction_property, user= user, bid_amount=bidamt)
+        try:
+            user_bid = Bidders.objects.get(properti = auction_property, user= user).bid_amount
+        except:
+            user_bid = 0
+
+        return render(request, 'bid.html', {'auction_property':auction_property,'status':'Bid success','user_bid':user_bid})
 
 def applyagent(request):
     return render(request, 'dashboard/apply_agent.html')
@@ -107,4 +147,15 @@ def property_list(request):
         prop = Properti.objects.filter(added_by=request.user)
         print (prop)
     return render(request, 'dashboard/property_details.html', {'prop':prop})
+
+@login_required
+def bidders_list(request,pk):
+    if request.method == 'GET':
+        prop = get_object_or_404(Properti, id=pk)
+        bidders = Bidders.objects.filter(properti=prop)
+        print (bidders)
+    return render(request, 'bidders_list.html', {'bidders':bidders})
+
+
+
 

@@ -9,15 +9,15 @@ from .views import * #addproperty, index, login, signup, sellhome, buy, agent, a
 # admin.site.index_title = "Welcome to the portal"
 urlpatterns = [
     path('', index, name='home'),
-    path('login', login),
+    path('login/', login),
     path('signup', signup),
     path('sellhome', sellhome),
-    path('buy', buy),
+    path('buy/<int:pk>/', buy),
     path('agent', agent),
     path('auction', auction),
     path('rent', rent),
     path('homeloan', homeloan),
-    path('bid', bid),
+    path('bid/<int:pk>/', bid, name = 'bid'),
     path('applyagent', applyagent),
     path('dashboard', dashboard),
     path('propertydetails', property_list),
@@ -25,4 +25,6 @@ urlpatterns = [
 
     path('property-detail/<int:pk>/', property_detail, name = 'property_detail'),
     path('delete/<int:id>', delete, name='delete'),
+
+    path('bidder-list/<int:pk>/', bidders_list, name = 'bidder-list')
 ]

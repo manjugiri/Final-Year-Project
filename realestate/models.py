@@ -52,7 +52,11 @@ class Properti(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     slug = models.SlugField(blank=True, null=True, unique=True)
     seodescription = models.TextField(blank=True)
-    # bidding_end_time = models.DateField(blank=True, null=True)
+    bidding_start_time = models.DateTimeField(blank=True, null=True)
+    bidding_end_time = models.DateTimeField(blank=True, null=True)
+
+
+
 
     class Meta:
         verbose_name = "Property"
@@ -61,6 +65,22 @@ class Properti(models.Model):
 
     def __str__(self):
         return self.title
+
+    def is_bid_start(self):
+        import datetime
+        time_now = datetime.datetime.now(self.bidding_start_time.tzinfo)
+        if self.bidding_start_time:
+            if self.bidding_start_time < time_now:
+                return True
+        return False
+
+    def maximum_bid_till_now(self):
+        from django.db.models import Max
+        try:
+            return self.bidders_prop.all().aggregate(Max('bid_amount')).get('bid_amount__max')
+        except:
+            return 'No any Bid'
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(f'{self.id}-{self.title}-{self.address}')
@@ -86,19 +106,10 @@ class Properti(models.Model):
 
 
 
-# class Bidders(models.Model):
-#     properti = models.ForeignKey(Properti, related_name = 'bidders', on_delete=models.CASCADE)
-#     bid_amount = models.FloatField()
-#     user = models.OneToOneField(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
-# 
-
-# class Bidders(models.Model):
-#     properti = models.ForeignKey(Properti, related_name = 'bidders', on_delete=models.CASCADE)
-#     bid_amount = models.FloatField()
-#     current_bid_amount = models.FloatField()
-#     user = models.OneToOneField(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
-#     start_date = models.DateField()
-#     end_date = models.DateField()
-
+class Bidders(models.Model):
+    properti = models.ForeignKey(Properti, related_name = 'bidders_prop', on_delete=models.CASCADE)
+    bid_amount = models.FloatField()
+    user = models.ForeignKey(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
+    
 
 
