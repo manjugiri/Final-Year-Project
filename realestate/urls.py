@@ -23,6 +23,7 @@ urlpatterns = [
     path('applyagent', applyagent),
     path('dashboard', dashboard),
     path('propertydetails', property_list, name='property_list'),
+    path('search-prop/', serach_property, name ='search-prop'),
 
     path('update_property/<int:pk>/', update_property, name='update_property'),
 

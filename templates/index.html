@@ -11,31 +11,35 @@
     <div class="div3-0">
       <div style="padding-top: 100px;" >
         <div class="property_search_form p-4 mt_30 bg_white" style="background-color:#ecf1eb;">
-					<form action="" method="post" class="property_filter_input">
+					<form action="{%url 'search-prop'%}" method="get" class="property_filter_input">
 						{% csrf_token %}
 						<div class="row">
+							<!-- <form action="{%url 'search-prop'%}"> -->
 							<div class="col-md-3">
 								<select name="status" class="selectpicker form-control">
-									<option>Any Status</option>
-									<option>Rent</option>
-									<option>Sale</option>
-									<option>Auction</option>
+									<option value="status">Any Status</option>
+									<option value="Rent">Rent</option>
+									<option value="Sale">Sale</option>
+									<option value="Auction">Auction</option>
 								</select>
 							</div>
 							<div class="col-md-3">
 								<select name="type" class="selectpicker form-control">
-									<option>Any Type</option>
-									<option>Land</option>
-									<option>House</option>
-									<option>Room</option>
+									<option value="type">Any Type</option>
+									<option value="Land">Land</option>
+									<option value="House">House</option>
+									<option value="Room">Room</option>
 								</select>
 							</div>
-							<div class="col-md-3 ">
+<!-- 							<div class="col-md-3 ">
 								<input class="form-control" name="address" type="search" placeholder="Search by city">
-							</div>
+							</div> -->
 							<div class="col-md-3">
 								<input class="login100-form-btn" type="submit" name="search" value="Search" class="btn btn_primary">
 							</div>
+							<!-- </form> -->
+
+
 						</div>
 					</form>
 				</div>

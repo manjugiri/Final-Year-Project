@@ -43,10 +43,10 @@ def sellhome(request):
 def buy(request):
     search = request.GET.get('search') if request.GET.get('search') != None else ''
     if search:
-        buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
+        buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search) & Q(is_approved= True))
         content = {'property':buy}
     else:
-        properti = Properti.objects.filter(status = "Sale")
+        properti = Properti.objects.filter(status = "Sale", is_approved = True)
         content = {'property':properti}
     return render(request, 'buy.html', content)
 
@@ -64,7 +64,7 @@ def rent(request):
     #     rent_properti = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
     # else:
     #     rent_properti = Properti.objects.filter(status = "Rent")
-    rent_properti = Properti.objects.filter(status="Rent")
+    rent_properti = Properti.objects.filter(status="Rent", is_approved=True)
     if property_type and not property_type=='All':
         rent_properti =rent_properti.filter(ptype = property_type)
 
@@ -86,7 +86,7 @@ def property_detail(request, pk):
     return render(request, 'property_detail.html',{'property':property_})
 
 def auction(request):
-    auction_property = Properti.objects.filter(status = 'Auction')
+    auction_property = Properti.objects.filter(status = 'Auction', is_approved = True)
     return render(request, 'auction.html', {"auction_property":auction_property})
 
 def agent(request):
@@ -178,5 +178,14 @@ def bidders_list(request,pk):
     return render(request, 'bidders_list.html', {'bidders':bidders})
 
 
-
+def serach_property(request):
+    prop = Properti.objects.filter(is_approved=True)
+    status = request.GET.get('status', None)
+    types = request.GET.get('type', None)
+    
+    if status and not types=='type':
+        prop = prop.filter(status=status)
+    if types and not status=='status':
+        prop = prop.filter(ptype=types)
+    return render(request, 'search.html', {'prop':prop})
 

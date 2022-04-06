@@ -54,7 +54,7 @@ class Properti(models.Model):
     seodescription = models.TextField(blank=True)
     bidding_start_time = models.DateTimeField(blank=True, null=True)
     bidding_end_time = models.DateTimeField(blank=True, null=True)
-
+    is_approved = models.BooleanField(default=False)
 
 
 
