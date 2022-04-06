@@ -1,9 +1,10 @@
 from pyexpat.errors import messages
+import re
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from .forms import addprop
-from .models import Properti, Bidders, Bank
+from .models import Properti, Bidders, Bank 
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -49,11 +50,10 @@ def buy(request):
         content = {'property':properti}
     return render(request, 'buy.html', content)
 
-def homeloan(request,pk):
-    if request.method == 'GET':
-        loan = get_object_or_404(Bank, id=pk)
-        bank = Bank.objects.filter(Bank=bank)
-    return render(request, 'homeloan.html', {'bank': bank})
+def homeloan(request):
+    loan = Bank.objects.all()
+    print('my',loan)
+    return render(request, 'homeloan.html', {'homeloan': loan})
 
 
 def rent(request):
@@ -145,10 +145,22 @@ def addproperty(request):
     return render(request, 'dashboard/add_property.html', {'form':fm})
 
 def delete(request, id):
-    remov= Properti.objects.get(id=id)
-    remov.delete()
-    return render(request, 'dashboard/property_details.html')
+    if request.method == 'POST':
+        pi = Properti.objects.get(pk=id)
+        pi.delete()
+    return redirect('property_list')
 
+def update_property(request, pk):
+    updateprop = get_object_or_404(Properti, id=pk)
+    fm = addprop(instance=updateprop)
+    if request.method == 'POST':
+        fm = addprop(request.POST,request.FILES, instance=updateprop)
+        if fm.is_valid():
+            fm.save()
+            return redirect('property_list')
+        else:
+            print('form is not valid')
+    return render(request, 'dashboard/update_property.html', {'form':fm, 'updateprop': updateprop})
 
 @login_required
 def property_list(request):

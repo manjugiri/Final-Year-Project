@@ -122,3 +122,12 @@ class Bank(models.Model):
 
     def __str__(self):
             return self.Bank_name
+
+class ApplyAgent(models.Model):
+    Agency_name = models.CharField(max_length=50)
+    Agency_Location = models.CharField(max_length=50)
+    Agency_Contact = models.CharField(max_length=50)
+    Agency_Email = models.EmailField()
+    Agency_Description = models.CharField(max_length=255)
+    
+

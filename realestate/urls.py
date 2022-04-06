@@ -22,11 +22,14 @@ urlpatterns = [
     path('bid/<int:pk>/', bid, name = 'bid'),
     path('applyagent', applyagent),
     path('dashboard', dashboard),
-    path('propertydetails', property_list),
-    path('addproperty', addproperty),
+    path('propertydetails', property_list, name='property_list'),
+
+    path('update_property/<int:pk>/', update_property, name='update_property'),
+
+    path('addproperty', addproperty, name='addproperty'),
 
     path('property-detail/<int:pk>/', property_detail, name = 'property_detail'),
     path('delete/<int:id>', delete, name='delete'),
 
-    path('bidder-list/<int:pk>/', bidders_list, name = 'bidder-list')
+    path('bidder-list/<int:id>/', bidders_list, name = 'bidder-list')
 ]

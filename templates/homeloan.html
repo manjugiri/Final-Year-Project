@@ -10,6 +10,10 @@
   height: 100px;
   width: 100px;
  }
+
+ .login100-form-btn:hover {
+     color: white !important;
+ }
 </style>
 
 	</head>
@@ -57,41 +61,41 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for i in Bank %}
+                    {% for Bank in homeloan %}
                     <tr>
                         <td>
                             <figure class="itemside align-items-center">
-                                <div class="aside"><img src="{{i.Bank_image}}" class="img-rounded"></div>
+                                <div class="aside"><img src="{{Bank.Bank_image.url}}" class="img-rounded"></div>
                                 
                             </figure>
                         </td>
                         <td>
                             <figcaption class="info">
-                                <a href="#" class="title text-dark"></a> {{i.Bank_name}}</a>
+                                <a href="#" class="title text-dark"></a> {{Bank.Bank_name}}</a>
                                 <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
                             </figcaption>
 
                         </td>
                         <td> 
                             <figcaption class="info">
-                                <a href="#" class="title text-dark">{{i.Phone_number}}</a>
+                                <a href="#" class="title text-dark">{{Bank.Phone_number}}</a>
                                 <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
                             </figcaption> <!-- col.// -->
                         </td>
                         <td> 
                             <div class="price-wrap"> 
-                                <var class="price">{{i.Rate}}</var> 
+                                <var class="price">{{Bank.Rate}}</var> 
                                 <!-- <small class="text-muted"> $315.20 each </small>  -->
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td> 
                             <div class="price-wrap"> 
                                 <!-- <var class="price">Upto 15 Yrs And More Years</var>  -->
-                                <small class="text-muted"> {{i.Tenure}} </small> 
+                                <small class="text-muted"> {{Bank.Tenure}} </small> 
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td class="text-right"> 
-                        <a href="" class="btn btn-success"> Calculate</a>
+                        <a href="" class=" login100-form-btn"> Calculate</a>
                         </td>
                     </tr>
                     {% endfor %}
