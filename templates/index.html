@@ -5,20 +5,89 @@
 <div class="main-div" id="bg-img" style="margin-top: 75px;">
         
   <div class="div2" id="perfecthome">
-    <h1 class="colored" style="color:aquamarine; margin-top: 70px;">Find your perfect Home</h1>
+    <h1 class="colored" style="color:#7fffd4; margin-top: 70px; padding-top: 6rem;" >Find your perfect Home</h1>
   </div>
-  <div class="div3">
+  <div class="div3 container">
     <div class="div3-0">
-      <div class="div3-01" >
-        <input type="text">
-        <span class="search" style="    background-color: white;">
-          <button><i class="fas fa-search"></i></button>
-        </span>
+      <div style="padding-top: 100px;" >
+        <div class="property_search_form p-4 mt_30 bg_white" style="background-color:#ecf1eb;">
+					<form action="" method="post" class="property_filter_input">
+						{% csrf_token %}
+						<div class="row">
+							<div class="col-md-3">
+								<select name="status" class="selectpicker form-control">
+									<option>Any Status</option>
+									<option>Rent</option>
+									<option>Sale</option>
+									<option>Auction</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<select name="type" class="selectpicker form-control">
+									<option>Any Type</option>
+									<option>Land</option>
+									<option>House</option>
+									<option>Room</option>
+								</select>
+							</div>
+							<div class="col-md-3 ">
+								<input class="form-control" name="address" type="search" placeholder="Search by city">
+							</div>
+							<div class="col-md-3">
+								<input class="login100-form-btn" type="submit" name="search" value="Search" class="btn btn_primary">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+      
       </div>
     </div>
   </div>
 </div>
-
+<section class="full_row pt_80 bg_white">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-3 col-lg-3 col-sm-6">
+				<div class="offer_item_2 mb_30 text-center wow fadeInLeft" data-wow-delay="200ms"
+					data-wow-duration="1000ms">
+					<div class="icon_large icon mb-2"><i class="flaticon-home-1"></i>
+					</div>
+					<h5 class="title py-3"><a>Verified</a></h5>
+					<p>We don't let unethical and suspicious listings. All properties are manually verified.
+					</p>
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-3 col-sm-6">
+				<div class="offer_item_2 mb_30 text-center wow fadeInLeft" data-wow-delay="100ms"
+					data-wow-duration="1000ms">
+					<div class="icon_large icon mb-2"><i class="flaticon-handshake"></i>
+					</div>
+					<h5 class="title py-3"><a>No hassle</a></h5>
+					<p>After buyers approach us, we send them over to the sellers. It's hassle free.</p>
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-3 col-sm-6">
+				<div class="offer_item_2 mb_30 text-center wow fadeInRight" data-wow-delay="100ms"
+					data-wow-duration="1000ms">
+					<div class="icon_large icon mb-2"><i class="flaticon-chat"></i>
+					</div>
+					<h5 class="title py-3"><a>No spam</a></h5>
+					<p>We restrict spammers so, we only provide contact details to legit buyers.</p>
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-3 col-sm-6">
+				<div class="offer_item_2 mb_30 text-center wow fadeInRight" data-wow-delay="200ms"
+					data-wow-duration="1000ms">
+					<div class="icon_large icon mb-2"><i class="flaticon-export"></i>
+					</div>
+					<h5 class="title py-3"><a>No worries</a></h5>
+					<p>Once you post your listing, you needn't worry. We'll take care the rest.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section class="bg-light pb-5 shadow-sm">
 <div class="container">
   <div class="row pt-5">
@@ -68,4 +137,6 @@
   </div>
 </div>
 </section>
+
+
 {% endblock content %}

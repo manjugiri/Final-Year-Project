@@ -1,53 +1,109 @@
 
 {% extends 'dashboard/dashboard_head.html' %}
+{% load static %}
 {% block content %}
 
 <section class="section-content padding-y">
   <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
     <article class="card-body">
-      <header class="mb-4"><h4 class="card-title text-center">Apply for Agent</h4></header>
+      <span class="login100-form-title p-b-70">
+        Apply for agent
+       </span>
+       <span class="login100-form-avatar">
+         <img src="images/avatar-01.jpg" alt="AVATAR">
+       </span>
       <form>
               <div class="form-group">
-                      <label>Agency Name</label>
-                        <input type="text" class="form-control" placeholder="">
+                <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter Agency Name">
+                  <input class="input100" type="text" name="Agency Name">
+                  <span class="focus-input100" data-placeholder="Agency Name"></span>
+                </div>
               </div>
+              
               <div class="form-row">
                   <div class="col form-group">
-                      <label>Agency Location</label>
-                        <input type="text" class="form-control" placeholder="">
+                    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter Agency Name">
+                      <input class="input100" type="text" name="Agency Name">
+                      <span class="focus-input100" data-placeholder="Agency Name"></span>
+                    </div>
                   </div>
                   <div class="col form-group">
-                      <label>Contact</label>
-                        <input type="text" class="form-control" placeholder="">
+                    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter Agency Name">
+                      <input class="input100" type="text" name="Agency Name">
+                      <span class="focus-input100" data-placeholder="Agency Name"></span>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                  <div class="col form-group">
+                    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter Agency Name">
+                      <input class="input100" type="text" name="Agency Name">
+                      <span class="focus-input100" data-placeholder="Agency Name"></span>
+                    </div>
+                  </div>
+                  <div class="col form-group">
+                    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter Agency Name">
+                      <input class="input100" type="text" name="Agency Name">
+                      <span class="focus-input100" data-placeholder="Agency Name"></span>
+                    </div>
                   </div>
               </div>
               <div class="form-group">
-                  <label>Email</label>
-                  <input type="email" class="form-control" placeholder="">
+                <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter Email">
+                  <input class="input100" type="Email" name="Email">
+                  <span class="focus-input100" data-placeholder="Email Address"></span>
+                </div>
                   <small class="form-text text-muted">This email will be share.</small>
-              </div> <!-- form-group end.// -->
+             </div> 
+
+             <!-- form-group end -->
               <div class="form-group">
-                  <label>Description</label>
-                  <input type="text-area" class="form-control" placeholder="" >
+                <div class="wrap-input100 validate-input m-b-50" data-validate="Description">
+                  <input class="input100" type="text" name="Description">
+                  <span class="focus-input100" data-placeholder="Description"></span>
+                </div>
                 </div>
                 <div class="form-row">
                   <div class="col form-group">
-                      <label>Conform password</label>
-                  <input type="password" class="form-control" placeholder="Password" >
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Confirm Password">
+                      <input class="input100" type="password" name="Password">
+                      <span class="focus-input100" data-placeholder="Confirm Password"></span>
+                    </div>
                   </div>
-                  <div class="col form-group">
-                      <label>Profile Image</label>
-                        <input type="text" class="form-control" placeholder="">
-                  </div>
+                  
               </div>
 
-              <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block"> Apply  </button>
-              </div>
+              <form action="">
+                <p>Agency logo</p>
+              <input style="font-family: Poppins-SemiBold;" type="file" name="fasdf" id="">
+          </form>
+          <br>
+    
+            <div class="container-login100-form-btn">
+              <button class="login100-form-btn">
+                Submit
+              </button>
           </form>
       </article>
   </div>    
 </section>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- apply agent/bid  -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> 
+
+  <link rel="stylesheet" href="{% static 'css/homeloan.css' %}">
+
+</head>
+      
 
 
 {% endblock content %}

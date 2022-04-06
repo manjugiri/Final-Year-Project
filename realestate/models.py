@@ -110,6 +110,15 @@ class Bidders(models.Model):
     properti = models.ForeignKey(Properti, related_name = 'bidders_prop', on_delete=models.CASCADE)
     bid_amount = models.FloatField()
     user = models.ForeignKey(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
-    
 
 
+# Bankloan
+class Bank(models.Model):
+    Bank_image = models.ImageField(upload_to='prop/%Y/%m/%d')
+    Bank_name = models.CharField(max_length=50)
+    Phone_number = models.CharField(max_length=50)
+    Rate =  models.CharField(max_length=50)
+    Tenure = models.CharField(max_length=50)
+
+    def __str__(self):
+            return self.Bank_name

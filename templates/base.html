@@ -85,6 +85,17 @@
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="/homeloan">Home Loan</a>
               </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                
+                <a class="nav-link " aria-current="page" href="{% url 'logout'%}">Logout</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/dashboard">dashboard</a>
+              </li>
+
+              {% else %}
 
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="{% url 'signup'%}">Signup</a>
@@ -92,11 +103,13 @@
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="{% url 'login'%}">Login</a>
               </li>
+             
+              {% endif %}
 
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="/dashboard">dashboard</a>
-              </li>
-  
+
+
+
+          
             </ul>
           </div>
   

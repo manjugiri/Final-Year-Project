@@ -1,9 +1,11 @@
+from pyexpat.errors import messages
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from .forms import addprop
-from .models import Properti, Bidders
+from .models import Properti, Bidders, Bank
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -27,6 +29,10 @@ def login(request):
 def signup(request):
     return render(request, 'signup.html')
 
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
 def sellhome(request):
     return render(request, 'sellhome.html')
 
@@ -43,8 +49,11 @@ def buy(request):
         content = {'property':properti}
     return render(request, 'buy.html', content)
 
-def homeloan(request):
-    return render(request, 'homeloan.html')
+def homeloan(request,pk):
+    if request.method == 'GET':
+        loan = get_object_or_404(Bank, id=pk)
+        bank = Bank.objects.filter(Bank=bank)
+    return render(request, 'homeloan.html', {'bank': bank})
 
 
 def rent(request):

@@ -11,8 +11,10 @@ urlpatterns = [
     path('', index, name='home'),
     path('login/', login),
     path('signup', signup),
+    path('logout', logout, name='logout'),
+
     path('sellhome', sellhome),
-    path('buy/<int:pk>/', buy),
+    path('buy', buy, name = 'buy'),
     path('agent', agent),
     path('auction', auction),
     path('rent', rent),

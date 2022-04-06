@@ -10,19 +10,20 @@
 align-items: center;
 justify-content: center;
 flex-direction: column;">
+    
     <div class="col-md-4 item-block animate-box" style="padding-top: 70px;" data-animate-effect="fadeIn">
         <div class="fh5co-property">
         <figure>
-            <img src="{{i.photo.url}}" alt="" class="img-responsive">
+            <img src="{{auction_property.photo.url}}" alt="" class="img-responsive">
             <!-- <a href="#" class="tag">For Sale</a> -->
         </figure>
         <div class="fh5co-property-innter">
-            <h3><a href="#">{{auction_property.title}}</a></h3>
-            <h6>
+            <h3><a style="font-size: 30px !important;" href="#">{{auction_property.title}}</a></h3>
+            <p class="price-status" style="font-size: 17px !important;">
                 <span>Bid Start Time</span> <span>{{auction_property.bidding_start_time}}</span><br>
                 <span>Bid End Time</span> <span>{{auction_property.bidding_end_time}}</span>
-            </h6>
-            <div class="price-status"> <p>Minimimum Amount : <span class="price">{{auction_property.price}}</span></p><br>
+            </p>
+            <div class="price-status" > <p style="font-size: 17px !important;">Minimimum Amount : <span class="price">{{auction_property.price}}</span></p><br>
 
                 <span>Maximum Bid Now: </span><span>{{auction_property.maximum_bid_till_now}}</span>
 
@@ -30,7 +31,7 @@ flex-direction: column;">
                     
             </div>
 
-            <p>{{auction_property.description}}</p>
+            <p style="font-size: 17px !important;">{{auction_property.description}}</p>
             </div>
             <p class="fh5co-property-specification">
                 <span><strong>{{auction_property.area}}</strong> Sq Ft</span>  <span><strong>{{auction_property.bed}}</strong> Beds</span>  <span><strong>{{auction_property.bathtub}}</strong> Baths</span>  <span><strong>{{auction_property.garage}}</strong> Garages</span>

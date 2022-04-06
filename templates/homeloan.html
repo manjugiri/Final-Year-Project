@@ -57,155 +57,44 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% for i in Bank %}
                     <tr>
                         <td>
                             <figure class="itemside align-items-center">
-                                <div class="aside"><img src="images/1.png" class="img-rounded"></div>
+                                <div class="aside"><img src="{{i.Bank_image}}" class="img-rounded"></div>
                                 
                             </figure>
                         </td>
                         <td>
                             <figcaption class="info">
-                                <a href="#" class="title text-dark"></a> Bank Name</a>
+                                <a href="#" class="title text-dark"></a> {{i.Bank_name}}</a>
                                 <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
                             </figcaption>
 
                         </td>
                         <td> 
                             <figcaption class="info">
-                                <a href="#" class="title text-dark">+977-9810503538</a>
+                                <a href="#" class="title text-dark">{{i.Phone_number}}</a>
                                 <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
                             </figcaption> <!-- col.// -->
                         </td>
                         <td> 
                             <div class="price-wrap"> 
-                                <var class="price">11%-15%</var> 
+                                <var class="price">{{i.Rate}}</var> 
                                 <!-- <small class="text-muted"> $315.20 each </small>  -->
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td> 
                             <div class="price-wrap"> 
                                 <!-- <var class="price">Upto 15 Yrs And More Years</var>  -->
-                                <small class="text-muted"> Upto 15 Yrs And More Years </small> 
+                                <small class="text-muted"> {{i.Tenure}} </small> 
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td class="text-right"> 
                         <a href="" class="btn btn-success"> Calculate</a>
                         </td>
                     </tr>
-
-
-                    <tr>
-                        <td>
-                            <figure class="itemside align-items-center">
-                                <div class="aside"><img src="images/2.png" class="img-rounded"></div>
-                                
-                            </figure>
-                        </td>
-                        <td>
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">Bank Name</a>
-                                <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
-                            </figcaption>
-
-                        </td>
-                        <td> 
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">+977-9810503538</a>
-                                <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
-                            </figcaption> <!-- col.// -->
-                        </td>
-                        <td> 
-                            <div class="price-wrap"> 
-                                <var class="price">11%-15%</var> 
-                                <!-- <small class="text-muted"> $315.20 each </small>  -->
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td> 
-                            <div class="price-wrap"> 
-                                <!-- <var class="price">Upto 15 Yrs And More Years</var>  -->
-                                <small class="text-muted"> Upto 15 Yrs And More Years </small> 
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td class="text-right"> 
-                        <a href="" class="btn btn-success"> Calculate</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <figure class="itemside align-items-center">
-                                <div class="aside"><img src="images/3.png" class="img-rounded"></div>
-                                
-                            </figure>
-                        </td>
-                        <td>
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">Bank Name</a>
-                                <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
-                            </figcaption>
-
-                        </td>
-                        <td> 
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">+977-9810503538</a>
-                                <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
-                            </figcaption> <!-- col.// -->
-                        </td>
-                        <td> 
-                            <div class="price-wrap"> 
-                                <var class="price">11%-15%</var> 
-                                <!-- <small class="text-muted"> $315.20 each </small>  -->
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td> 
-                            <div class="price-wrap"> 
-                                <!-- <var class="price">Upto 15 Yrs And More Years</var>  -->
-                                <small class="text-muted"> Upto 15 Yrs And More Years </small> 
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td class="text-right"> 
-                        <a href="" class="btn btn-success">Calculate</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <figure class="itemside align-items-center">
-                                <div class="aside"><img src="images/4.png" class="img-rounded"></div>
-                                
-                            </figure>
-                        </td>
-                        <td>
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">Bank Name</a>
-                                <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
-                            </figcaption>
-
-                        </td>
-                        <td> 
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">+977-9810503538</a>
-                                <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
-                            </figcaption> <!-- col.// -->
-                        </td>
-                        <td> 
-                            <div class="price-wrap"> 
-                                <var class="price">11%-15%</var> 
-                                <!-- <small class="text-muted"> $315.20 each </small>  -->
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td> 
-                            <div class="price-wrap"> 
-                                <!-- <var class="price">Upto 15 Yrs And More Years</var>  -->
-                                <small class="text-muted"> Upto 15 Yrs And More Years </small> 
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td class="text-right"> 
-                        <a href="" class="btn btn-success">Calculate</a>
-                        </td>
-                    </tr>
-
+                    {% endfor %}
                     </tbody>
                     </table>
                     </div>
