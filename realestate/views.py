@@ -89,9 +89,10 @@ def property_detail(request, pk):
 def auction(request):
     auction_property = Properti.objects.filter(status = 'Auction', is_approved = True)
     return render(request, 'auction.html', {"auction_property":auction_property})
-
+from .models import ApplyAgent
 def agent(request):
-    return render(request, 'agent.html')
+    agent = ApplyAgent.objects.filter(is_approved=True)
+    return render(request, 'agent.html', {'agent':agent})
 
 def estate(request):
     return render(request, 'estate.html')
@@ -135,6 +136,11 @@ def dashboard(request):
 def propertydetails(request):
     return render(request, 'dashboard/property_details.html')
 
+
+from .permission import is_agent
+
+@is_agent
+@login_required
 def addproperty(request):
     fm = addprop()
     if request.method == 'POST':
@@ -146,12 +152,16 @@ def addproperty(request):
             print('form is not valid')
     return render(request, 'dashboard/add_property.html', {'form':fm})
 
+@is_agent
+@login_required
 def delete(request, id):
     if request.method == 'POST':
         pi = Properti.objects.get(pk=id)
         pi.delete()
     return redirect('property_list')
 
+@is_agent
+@login_required
 def update_property(request, pk):
     updateprop = get_object_or_404(Properti, id=pk)
     fm = addprop(instance=updateprop)
@@ -163,9 +173,10 @@ def update_property(request, pk):
         else:
             print('form is not valid')
     return render(request, 'dashboard/update_property.html', {'form':fm, 'updateprop': updateprop})
-
+@is_agent
 @login_required
 def property_list(request):
+    # if request.user.agent.is_approved:
     if request.method == 'GET':
         prop = Properti.objects.filter(added_by=request.user)
         print (prop)

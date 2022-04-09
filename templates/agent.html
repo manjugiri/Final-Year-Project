@@ -23,15 +23,17 @@
 					<h2>Our Trusted Agents</h2>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 				</div>
+
+				{%for i in agent%}
 				<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
 
 					<div class="fh5co-agent">
 						<figure>
-							<img src="images/testimonial_person2.jpg" >
+							<img src="{{i.Agency_logo.url}}" >
 						</figure>
-						<h3>John Doe</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
-						<p><a href="#" class="btn btn-primary btn-outline">Contact Me</a></p>
+						<h3>{{i.Agency_name}}</h3>
+						<p>{{i.Agency_Description}}</p>
+						<p><a href="tel:{{i.Agency_Contact}}" class="btn btn-primary btn-outline">Contact Me</a></p>
 						<div class="test-rate" style="font-size:16px;color:#F47E00;">
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
@@ -42,42 +44,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-agent">
-						<figure>
-							<img src="images/testimonial_person3.jpg" >
-						</figure>
-						<h3>John Doe</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
-						<p><a href="#" class="btn btn-primary btn-outline">Contact Me</a></p>
-						<div class="test-rate" style="font-size:16px;color:#F47E00;">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-agent">
-						<figure>
-							<img src="images/testimonial_person4.jpg" >
-						</figure>
-						<h3>John Doe</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
-						<p><a href="#" class="btn btn-primary btn-outline">Contact Me</a></p>
-						<div class="test-rate" style="font-size:16px;color:#F47E00;">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-
-						</div>
-					</div>
-				</div>
+				{%endfor%}
+				
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">

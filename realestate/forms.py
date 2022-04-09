@@ -1,4 +1,4 @@
-from attr import field
+# from attr import fields
 from django.core import validators
 from django import forms
 from .models import ApplyAgent

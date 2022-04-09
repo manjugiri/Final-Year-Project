@@ -32,5 +32,5 @@ urlpatterns = [
     path('property-detail/<int:pk>/', property_detail, name = 'property_detail'),
     path('delete/<int:id>', delete, name='delete'),
 
-    path('bidder-list/<int:id>/', bidders_list, name = 'bidder-list')
+    path('bidder-list/<int:pk>/', bidders_list, name = 'bidder-list')
 ]
