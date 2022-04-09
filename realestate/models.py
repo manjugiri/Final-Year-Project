@@ -105,7 +105,6 @@ class Properti(models.Model):
         return uploadedImage
 
 
-
 class Bidders(models.Model):
     properti = models.ForeignKey(Properti, related_name = 'bidders_prop', on_delete=models.CASCADE)
     bid_amount = models.FloatField()
@@ -129,5 +128,8 @@ class ApplyAgent(models.Model):
     Agency_Contact = models.CharField(max_length=50)
     Agency_Email = models.EmailField()
     Agency_Description = models.CharField(max_length=255)
-    
+    Agency_logo = models.ImageField(blank=True, upload_to='prop/%Y/%m/%d')
+    is_approved = models.BooleanField(default=False)
 
+    def __str__(self):
+            return self.Agency_name

@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from .forms import addprop
+from .forms import apply_agent
 from .models import Properti, Bidders, Bank 
 from django.contrib.auth.decorators import login_required
 
@@ -124,8 +125,9 @@ def bid(request, pk):
 
         return render(request, 'bid.html', {'auction_property':auction_property,'status':'Bid success','user_bid':user_bid})
 
-def applyagent(request):
-    return render(request, 'dashboard/apply_agent.html')
+# def applyagent(request):
+#     print("hello")
+#     return render(request, 'dashboard/apply_agent.html')
 
 def dashboard(request):
     return render(request, 'dashboard/profile.html')
@@ -189,3 +191,21 @@ def serach_property(request):
         prop = prop.filter(ptype=types)
     return render(request, 'search.html', {'prop':prop})
 
+
+
+
+# applyagent
+def applyagent(request):
+    pass
+    if request.method == 'POST':
+        af = apply_agent(request.POST, request.FILES)
+        if af.is_valid():
+            af.save()
+            return redirect('home')
+        else:
+            print('form is not valid')
+    else:
+        print("form is")
+        af = apply_agent()
+        print(af)
+    return render(request, 'dashboard/apply_agent.html', {'form':af})

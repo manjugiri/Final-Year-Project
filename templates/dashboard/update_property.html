@@ -12,8 +12,7 @@
         <form action ="{% url 'update_property' updateprop.id %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{form.as_p}}
-          <input type="submit" class="btn btn-primary btn-block" placeholder = "Update Property"></input>
-                
+          <input type="submit" class="btn btn-primary btn-block input100" placeholder = "Update Property"></input>
         </form>
         </article>
     </div>    
