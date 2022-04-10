@@ -27,7 +27,7 @@ urlpatterns = [
 
     path('update_property/<int:pk>/', update_property, name='update_property'),
 
-    path('addproperty', addproperty, name='addproperty'),
+    path('addproperty/', addproperty, name='addproperty'),
 
     path('property-detail/<int:pk>/', property_detail, name = 'property_detail'),
     path('delete/<int:id>', delete, name='delete'),

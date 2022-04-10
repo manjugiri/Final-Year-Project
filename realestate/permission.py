@@ -13,7 +13,7 @@ def is_agent(view_func):
     	user = request.user
     	try:
     		if user.agent.is_approved:
-    			return redirect('addproperty')
+    			return _wrapped_view_func(request, *args, **kwargs)
     		else:
     			return redirect('applyagent')
     	except:
