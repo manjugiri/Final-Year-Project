@@ -34,7 +34,19 @@
 						<h3>{{i.Agency_name}}</h3>
 						<p>{{i.Agency_Description}}</p>
 						<p><a href="tel:{{i.Agency_Contact}}" class="btn btn-primary btn-outline">Contact Me</a></p>
+						{%if i.total_rating%}
 						<div class="test-rate" style="font-size:16px;color:#F47E00;">
+							{%for j in i.total_rating%}
+							<i class="fa fa-star" aria-hidden="true"></i>
+							{%endfor%}
+							<!-- <i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i> -->
+
+						</div>
+						{%else%}
+						<div class="test-rate" style="font-size:16px;color:#808080;">
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
 							<i class="fa fa-star" aria-hidden="true"></i>
@@ -42,6 +54,27 @@
 							<i class="fa fa-star" aria-hidden="true"></i>
 
 						</div>
+						{%endif%}
+
+						{%if user.is_authenticated%}
+						
+						
+						<p style="margin-left: 80px;">
+						<form method="post" action="{%url 'agent'%}" style="margin-left:40px;">
+							{%csrf_token%}
+						<select class="form-control" style="width:150px; text-align: center; margin-left:40px;" onchange="this.form.submit()" name="rating_value">
+							<option value="none">Rate Agent</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<input type="hidden" name="agent" value="{{i.id}}">
+						</form>
+						</p>
+
+						{%endif%}
 					</div>
 				</div>
 				{%endfor%}

@@ -89,10 +89,21 @@ def property_detail(request, pk):
 def auction(request):
     auction_property = Properti.objects.filter(status = 'Auction', is_approved = True)
     return render(request, 'auction.html', {"auction_property":auction_property})
-from .models import ApplyAgent
+
+from .models import ApplyAgent,AgentRating
 def agent(request):
-    agent = ApplyAgent.objects.filter(is_approved=True)
-    return render(request, 'agent.html', {'agent':agent})
+    if request.method == 'GET':
+        agent = ApplyAgent.objects.filter(is_approved=True)
+        return render(request, 'agent.html', {'agent':agent})
+    if request.method == 'POST':
+        value = request.POST.get('rating_value', None)
+        agent = request.POST.get('agent', None)
+        if value and agent and not value == 'none':
+            if AgentRating.objects.filter(rating_by = request.user, agent_id=agent).exists():
+                AgentRating.objects.filter(rating_by = request.user, agent_id=agent).update(value = value)
+            else:
+                AgentRating.objects.create(agent_id = agent, value=value, rating_by=request.user)
+        return redirect('agent')
 
 def estate(request):
     return render(request, 'estate.html')
@@ -195,11 +206,15 @@ def serach_property(request):
     prop = Properti.objects.filter(is_approved=True)
     status = request.GET.get('status', None)
     types = request.GET.get('type', None)
-    
-    if status and not types=='type':
+    address = request.GET.get('address', None)
+    # prop = prop.filter(status =status, ptype = types)
+    # print(prop)
+    if status and not status=='none':
         prop = prop.filter(status=status)
-    if types and not status=='status':
+        print(prop)
+    if types and not types == 'none':
         prop = prop.filter(ptype=types)
+        print(prop)
     return render(request, 'search.html', {'prop':prop})
 
 

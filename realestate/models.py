@@ -135,6 +135,13 @@ class ApplyAgent(models.Model):
     def __str__(self):
             return self.Agency_name
 
+    def total_rating(self):
+        from django.db.models import Avg
+        if self.rating_of_agent.all().exists():
+            return range(int(self.rating_of_agent.aggregate(Avg('value')).get('value__avg')))
+        return False
+
+
 class AgentRating(models.Model):
     agent  = models.ForeignKey(ApplyAgent, related_name = 'rating_of_agent', blank = True, on_delete = models.CASCADE)
     value = models.IntegerField()
