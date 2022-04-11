@@ -15,7 +15,7 @@ class apply_agent(forms.ModelForm):
     class Meta:
         model = ApplyAgent
         fields = ['Agency_name', 'Agency_Location', 'Agency_Contact','Agency_Email','Agency_Description', 'Agency_logo', 'is_approved' ]
-        exclude = ['is_approved']
+        exclude = ['is_approved','user']
 
     def __init__(self, *args, **kargs):
             super(apply_agent, self).__init__(*args, **kargs)

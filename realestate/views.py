@@ -226,7 +226,9 @@ def applyagent(request):
     if request.method == 'POST':
         af = apply_agent(request.POST, request.FILES)
         if af.is_valid():
-            af.save()
+            form = af.save(commit = True)
+            form.user=request.user
+            form.save()
             return redirect('home')
         else:
             print('form is not valid')
