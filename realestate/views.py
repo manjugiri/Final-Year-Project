@@ -224,14 +224,20 @@ def serach_property(request):
 def applyagent(request):
     pass
     if request.method == 'POST':
-        af = apply_agent(request.POST, request.FILES)
-        if af.is_valid():
-            form = af.save(commit = True)
-            form.user=request.user
-            form.save()
-            return redirect('home')
-        else:
-            print('form is not valid')
+        try:
+            af = apply_agent(request.POST, request.FILES)
+            if af.is_valid():
+                form = af.save(commit = False)
+                form.user=request.user
+                form.save()
+                return redirect('home')
+            else:
+                print('form is not valid')
+        except:
+            print("form is")
+            af = apply_agent()
+            print(af)
+            return render(request, 'dashboard/apply_agent.html', {'form':af})
     else:
         print("form is")
         af = apply_agent()
