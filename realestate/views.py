@@ -215,6 +215,9 @@ def serach_property(request):
     if types and not types == 'none':
         prop = prop.filter(ptype=types)
         print(prop)
+    if types and not types == 'none':
+        prop = prop.filter(address=address)
+        print(prop)
     return render(request, 'search.html', {'prop':prop})
 
 

@@ -2,20 +2,17 @@
 {% extends 'base.html' %}
 <!-- {% load static %} -->
 {% block content %}
+
+<style>
+	.btn{
+		color: black!important;
+	}
+</style>
 	<div id="fh5co-page">
 	
 
-	<div class="fh5co-page-title" style="background-image: url(images/slide_6.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 animate-box">
-                    <!-- Page heading -->
-					<h1><span class="colored">Find</span> Agents</h1>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="fh5co-page-title" style="background-image: url(/static/images/slide_6.jpg);">
+	<h1><span class="colored">Find</span> Agent</h1>
 	<div id="best-deal">
 		<div class="container">
 			<div class="row">
@@ -29,7 +26,7 @@
 
 					<div class="fh5co-agent">
 						<figure>
-							<img src="{{i.Agency_logo.url}}" >
+							<img src="{{i.Agency_logo.url}}" height="300" width="250" >
 						</figure>
 						<h3>{{i.Agency_name}}</h3>
 						<p>{{i.Agency_Description}}</p>
@@ -60,9 +57,9 @@
 						
 						
 						<p style="margin-left: 80px;">
-						<form method="post" action="{%url 'agent'%}" style="margin-left:40px;">
+						<form method="post" action="{%url 'agent'%}" style="margin-left-250px;">
 							{%csrf_token%}
-						<select class="form-control" style="width:150px; text-align: center; margin-left:40px;" onchange="this.form.submit()" name="rating_value">
+						<select class="form-control btn btn-secondary dropdown-toggle" style="width:150px; border-radius: 0%; text-align: center; margin-left:40px;" onchange="this.form.submit()" name="rating_value">
 							<option value="none">Rate Agent</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
