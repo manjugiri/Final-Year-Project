@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 def is_agent(function):
     def wrap(request, *args, **kwargs):
         user = request.user
-        if user.agent.is_approved:
+        if user.applyagent.is_approved:
             return function(request, *args, **kwargs)
         else:
             # raise PermissionDenied

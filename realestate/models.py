@@ -123,11 +123,11 @@ class Bank(models.Model):
             return self.Bank_name
 
 class ApplyAgent(models.Model):
-    user = models.OneToOneField(Account, related_name = 'agent', on_delete = models.CASCADE, blank=True)
+    user = models.OneToOneField(Account, on_delete = models.CASCADE, blank=True)
     Agency_name = models.CharField(max_length=50)
     Agency_Location = models.CharField(max_length=50)
     Agency_Contact = models.CharField(max_length=50)
-    Agency_Email = models.EmailField()
+    Agency_Email = models.EmailField(null=False,unique=True)
     Agency_Description = models.CharField(max_length=255)
     Agency_logo = models.ImageField(blank=True,null=True, upload_to='prop/%Y/%m/%d')
     is_approved = models.BooleanField(default=False)

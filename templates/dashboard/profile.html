@@ -9,16 +9,9 @@
       <div class="container">
           <div class="card text">
               <div class="card-body">
-<<<<<<< HEAD
                 <p class="card-text"><b> Name :</b>{{request.user.full_name}}</p><br>
                 <p class="card-text"><b> Email :</b>{{request.user.email}}</p><br>
                 <p class="card-text"><b> Phone :</b> +977-{{request.user.contact}}</p><br>
-=======
-                <p class="card-text"><b> Name :</b> iamAgent</p><br>
-                <p class="card-text"><b> Email :</b> text@email.com</p><br>
-                <p class="card-text"><b> Phone :</b> +977-9876543210</p><br>
->>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
-                <p class="card-text"><b> Address :</b> Kathmandu, Nepal</p><br>
                 {% if request.user.agent%}
                 <div class="agent-status">
                     verified as agent.

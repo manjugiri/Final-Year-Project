@@ -1,13 +1,9 @@
 from pyexpat.errors import messages
-<<<<<<< HEAD
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
-from django.http import HttpResponse
-=======
-import re
-from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
->>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
+import re
+
 from django.db.models import Q
 from .forms import addprop
 from .forms import apply_agent
@@ -18,32 +14,13 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'index.html')
 
-<<<<<<< HEAD
-=======
-def login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
 
-        user = auth.authenticate(email=email, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            return redirect('home')
-        else:
-            messages.error(request, 'Invalid email or password')
-            return render(request, 'account/login.html')
-
-    return render(request, 'account/login.html')
->>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
 
 def user_logout(request):
     logout(request,request.user)
     return redirect('home')
 
-def logout(request):
-    auth.logout(request)
-    return redirect('/')
+
 
 def sellhome(request):
     return render(request, 'sellhome.html')
@@ -54,11 +31,7 @@ def sellhome(request):
 def buy(request):
     search = request.GET.get('search') if request.GET.get('search') != None else ''
     if search:
-<<<<<<< HEAD
-        buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search)| Q(title__icontains = search),status = "Sale")
-=======
         buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search) & Q(is_approved= True))
->>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
         content = {'property':buy}
     else:
         properti = Properti.objects.filter(status = "Sale", is_approved = True)
@@ -72,15 +45,14 @@ def homeloan(request):
 
 
 def rent(request):
-<<<<<<< HEAD
-    search = request.GET.get('search') if request.GET.get('search') != None else ''
-    if search:
-        rent = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search) | Q(title__icontains = search),status = "Rent" )
-        content = {'rent':rent}
-    else:
-        rent_properti = Properti.objects.filter(status = "Rent")
-        content = {'rent': rent_properti,}
-=======
+
+    # search = request.GET.get('search') if request.GET.get('search') != None else ''
+    # if search:
+    #     rent = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search) | Q(title__icontains = search),status = "Rent" )
+    #     content = {'rent':rent}
+    # else:
+    #     rent_properti = Properti.objects.filter(status = "Rent")
+    #     content = {'rent': rent_properti,}
     # search = request.GET.get('search') if request.GET.get('search') != None else ''
     property_type = request.GET.get('property_type', None)
     sort_by = request.GET.get('sort_by', None)
@@ -101,7 +73,6 @@ def rent(request):
         # price__gte, price__lte
     content = {'rent': rent_properti, 'sort_by':sort_by, 'property_type':property_type}
 
->>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
     return render(request, 'rent.html',content)
 
 
@@ -190,30 +161,15 @@ def addproperty(request):
             print('form is not valid')
     return render(request, 'dashboard/add_property.html', {'form':fm})
 
-<<<<<<< HEAD
-def update_property(request,pk):
-    property = Properti.objects.get(id = pk)
-    fm = addprop(instance=property)
-    if request.method == "POST":
-        fm = addprop(request.POST,instance=property)
-        if fm.is_valid():
-            fm.save()
-            return redirect('propertydetails')
-    
-    return render(request,'dashboard/add_property.html',{'form':fm})
 
-def remove_property(request,pk):
-    property = Properti.objects.get(id = pk)
-    property.delete()
-    return redirect('propertydetails')
-=======
+
 @is_agent
 @login_required
-def delete(request, id):
+def delete(request, pk):
     if request.method == 'POST':
-        pi = Properti.objects.get(pk=id)
+        pi = Properti.objects.get(id=pk)
         pi.delete()
-    return redirect('property_list')
+        return redirect('propertydetails')
 
 @is_agent
 @login_required
@@ -221,13 +177,14 @@ def update_property(request, pk):
     updateprop = get_object_or_404(Properti, id=pk)
     fm = addprop(instance=updateprop)
     if request.method == 'POST':
-        fm = addprop(request.POST,request.FILES, instance=updateprop)
+        fm = addprop(request.POST, request.FILES, instance=updateprop)
         if fm.is_valid():
             fm.save()
-            return redirect('property_list')
+            return redirect('propertydetails')
         else:
             print('form is not valid')
     return render(request, 'dashboard/update_property.html', {'form':fm, 'updateprop': updateprop})
+
 @is_agent
 @login_required
 def property_list(request):
@@ -290,4 +247,4 @@ def applyagent(request):
         af = apply_agent()
         print(af)
     return render(request, 'dashboard/apply_agent.html', {'form':af})
->>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
+
