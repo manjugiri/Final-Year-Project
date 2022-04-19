@@ -9,13 +9,19 @@
       <div class="container">
           <div class="card text">
               <div class="card-body">
-                <p class="card-text"><b> Name :</b> Rishi Raj Shrestha</p><br>
-                <p class="card-text"><b> Email :</b> text@email.com</p><br>
-                <p class="card-text"><b> Phone :</b> +977-9876543210</p><br>
+                <p class="card-text"><b> Name :</b>{{request.user.full_name}}</p><br>
+                <p class="card-text"><b> Email :</b>{{request.user.email}}</p><br>
+                <p class="card-text"><b> Phone :</b> +977-{{request.user.contact}}</p><br>
                 <p class="card-text"><b> Address :</b> Kathmandu, Nepal</p><br>
+                {% if request.user.agent%}
                 <div class="agent-status">
-                    Not verified as agent.
+                    verified as agent.
                   </div>
+                {% else %}
+                  <div class="agent-status">
+                      not verified as agent.
+                    </div>
+                {% endif %}
               </div>
           </div>
       </div> 

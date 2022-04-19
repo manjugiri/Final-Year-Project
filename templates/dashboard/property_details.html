@@ -1,5 +1,6 @@
 {% extends 'dashboard/dashboard_head.html' %}
 {% block content %}
+{% load humanize%}
 <head>
  
     <style>
@@ -27,7 +28,6 @@
                 <table class="table table-borderless">
                 <thead class="text-muted">
                 <tr class="small text-uppercase">
-                    <th scope="col" width="10">S/N</th>
                   <th scope="col" width="120">Image</th>
                   <th scope="col" width="300">Title</th>
                   <th scope="col" width="150">Area(sq ft)</th>
@@ -39,82 +39,41 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for details in property%}
                 <tr>
                     <td>
-                        <div class="aside">
-                            <p>1</p>
-                        </div>  
-                    </td>
-                    <td>
                         <figure class="itemside align-items-center">
-                            <div class="aside"><img src="profile.jpg" class="img-rounded"></div>
+                            <div class="aside"><img src="{{details.photo.url}}" class="img-rounded"></div>
                         </figure>
                     </td>
                     <td>
                         <figcaption class="info">
-                            <a href="#" class="title text-dark">Rishi Investment Bank</a>
-                            <p class="text-muted small">Faced: Direction</p>
+                            <a href="#" class="title text-dark">{{details.title}}</a>
+                           
                         </figcaption>
 
                     </td>
                     <td> 
-                        <small class="text-muted">12000 sq ft</small> 
+                        <small class="text-muted">{{details.area}}sq ft</small> 
                     </td>
                     <td>  
-                        <samp class="text-muted">Rent</samp> 
+                        <samp class="text-muted">{{details.status}}</samp> 
                     </td>
                     <td> 
-                        <p class="text-muted"> Upto 15 Yrs And More Years </p> 
+                        <p class="text-muted"> {{details.address}} </p> 
 
                     </td>
                     <td> 
-                        <p class="text-muted"> $1,000,000 </p>
+                        <p class="text-muted"> ${{details.price|intcomma}}</p>
                     </td>
                     <td class="text-center"> 
-                    <a href="" class="btn btn-info"> Update</a>
+                    <a href="{% url 'update' details.id %}" class="btn btn-info"> Update</a>
                     </td>
                     <td class="text-center"> 
-                        <a href="" class="btn btn-warning"> Remove</a>
+                        <a href="{% url 'remove' details.id%}" class="btn btn-warning"> Remove</a>
                         </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="aside">
-                            <p>1</p>
-                        </div>  
-                    </td>
-                    <td>
-                        <figure class="itemside align-items-center">
-                            <div class="aside"><img src="images/1.png" class="img-rounded"></div>
-                        </figure>
-                    </td>
-                    <td>
-                        <figcaption class="info">
-                            <a href="#" class="title text-dark">Rishi Investment Bank</a>
-                            <p class="text-muted small">Faced: Direction</p>
-                        </figcaption>
-
-                    </td>
-                    <td> 
-                        <small class="text-muted">12000 sq ft</small> 
-                    </td>
-                    <td>  
-                        <samp class="text-muted">Rent</samp> 
-                    </td>
-                    <td> 
-                        <p class="text-muted"> Upto 15 Yrs And More Years </p> 
-
-                    </td>
-                    <td> 
-                        <p class="text-muted"> $1,000,000 </p>
-                    </td>
-                    <td class="text-center"> 
-                    <a href="" class="btn btn-info"> Update</a>
-                    </td>
-                    <td class="text-center"> 
-                        <a href="" class="btn btn-warning"> Remove</a>
-                        </td>
-                </tr>
+                {% endfor %}
                 </tbody>
                 </table>
             </div> 
