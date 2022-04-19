@@ -22,7 +22,40 @@
 <div id="best-deal">
   <div class="container">
     <div class="col-md-3">
-              <div class="col-md-12">
+      <div class="col-md-12">
+									
+        <form>
+            <select class='form-control' name="property_type" id="select-by-type" onchange="this.form.submit()">
+              
+              <option value="All">Filter By Type</option>
+              <option value="Home" {%if property_type == 'Home'%}selected{%endif%}>Home</option>
+              <option value="Land" {%if property_type == 'Land'%}selected{%endif%}>Land</option>
+              <option value="Room" {%if property_type == 'Room'%}selected{%endif%}>Room</option>
+            </select>
+
+            <input type="hidden" name="sort_by" value="{{sort_by}}">
+          </form>
+
+          </div>
+
+
+      <div class="col-md-12">
+        <form>
+            <select class='form-control' name="sort_by" id="select-by-type" onchange="this.form.submit()">
+              
+              <option value="none_">Sort By</option>
+              <option value="lh" {%if sort_by == 'lh'%}selected{%endif%}>Low to High</option>
+              <option value="hl" {%if sort_by == 'hl'%}selected{%endif%}>High to Low</option>
+            </select>
+            <input type="hidden" name="property_type" value="{{property_type}}">
+
+          </form>
+            
+        
+      </div>
+
+
+              <!-- <div class="col-md-12">
                 
               <form>
                   <select class='form-control' name="property_type" id="select-by-type" onchange="this.form.submit()">
@@ -52,7 +85,7 @@
                 </form>
                   
               
-            </div>
+            </div> -->
 
 </div>
     <div class="row">

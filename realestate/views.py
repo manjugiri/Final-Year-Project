@@ -81,6 +81,7 @@ def rent(request):
     return render(request, 'rent.html',content)
 
 
+
 from django.shortcuts import get_object_or_404
 def property_detail(request, pk):
     property_ = get_object_or_404(Properti, id=pk)
@@ -215,7 +216,7 @@ def serach_property(request):
     if types and not types == 'none':
         prop = prop.filter(ptype=types)
         print(prop)
-    if types and not types == 'none':
+    if address:
         prop = prop.filter(address=address)
         print(prop)
     return render(request, 'search.html', {'prop':prop})
