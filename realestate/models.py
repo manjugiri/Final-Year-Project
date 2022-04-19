@@ -8,10 +8,14 @@ from PIL import Image
 from io import BytesIO
 import sys
 from django.core.files.uploadedfile import InMemoryUploadedFile
+
+import accounts
+from accounts.models import Account
 # Create your models here.
 STATUS_CHOICES = [
     ('Rent', 'Rent'),
     ('Sale', 'Sale'),
+    ('Auction', 'Auction')
 ]
 
 TYPE_CHOICES = [
@@ -48,6 +52,11 @@ class Properti(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, null=True)
     slug = models.SlugField(blank=True, null=True, unique=True)
     seodescription = models.TextField(blank=True)
+    bidding_start_time = models.DateTimeField(blank=True, null=True)
+    bidding_end_time = models.DateTimeField(blank=True, null=True)
+    is_approved = models.BooleanField(default=False)
+
+
 
     class Meta:
         verbose_name = "Property"
@@ -56,6 +65,22 @@ class Properti(models.Model):
 
     def __str__(self):
         return self.title
+
+    def is_bid_start(self):
+        import datetime
+        time_now = datetime.datetime.now(self.bidding_start_time.tzinfo)
+        if self.bidding_start_time:
+            if self.bidding_start_time < time_now:
+                return True
+        return False
+
+    def maximum_bid_till_now(self):
+        from django.db.models import Max
+        try:
+            return self.bidders_prop.all().aggregate(Max('bid_amount')).get('bid_amount__max')
+        except:
+            return 'No any Bid'
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(f'{self.id}-{self.title}-{self.address}')
@@ -78,3 +103,48 @@ class Properti(models.Model):
         uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', "%s.jpg" % uploadedImage.name.split('.')[
 0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
         return uploadedImage
+
+
+class Bidders(models.Model):
+    properti = models.ForeignKey(Properti, related_name = 'bidders_prop', on_delete=models.CASCADE)
+    bid_amount = models.FloatField()
+    user = models.ForeignKey(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
+
+
+# Bankloan
+class Bank(models.Model):
+    Bank_image = models.ImageField(upload_to='prop/%Y/%m/%d')
+    Bank_name = models.CharField(max_length=50)
+    Phone_number = models.CharField(max_length=50)
+    Rate =  models.CharField(max_length=50)
+    Tenure = models.CharField(max_length=50)
+
+    def __str__(self):
+            return self.Bank_name
+
+class ApplyAgent(models.Model):
+    user = models.OneToOneField(Account, related_name = 'agent', on_delete = models.CASCADE, blank=True)
+    Agency_name = models.CharField(max_length=50)
+    Agency_Location = models.CharField(max_length=50)
+    Agency_Contact = models.CharField(max_length=50)
+    Agency_Email = models.EmailField()
+    Agency_Description = models.CharField(max_length=255)
+    Agency_logo = models.ImageField(blank=True,null=True, upload_to='prop/%Y/%m/%d')
+    is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+            return self.Agency_name
+
+    def total_rating(self):
+        from django.db.models import Avg
+        if self.rating_of_agent.all().exists():
+            return range(int(self.rating_of_agent.aggregate(Avg('value')).get('value__avg')))
+        return False
+
+
+class AgentRating(models.Model):
+    agent  = models.ForeignKey(ApplyAgent, related_name = 'rating_of_agent', blank = True, on_delete = models.CASCADE)
+    value = models.IntegerField()
+    rating_by = models.ForeignKey(Account, related_name = 'agent_rater', blank = True, on_delete = models.CASCADE)
+
+   

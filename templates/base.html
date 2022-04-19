@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> 
 
-    <link rel="stylesheet" href="{% static 'css/homeloan.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/homeloan.css' %}"> -->
 
     
     <title>REMS</title>
@@ -85,7 +85,22 @@
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="/homeloan">Home Loan</a>
               </li>
+<<<<<<< HEAD
               {% if request.user.is_authenticated%}
+=======
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                
+                <a class="nav-link " aria-current="page" href="{% url 'logout'%}">Logout</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/dashboard">dashboard</a>
+              </li>
+
+              {% else %}
+
+>>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="{% url 'login'%}">Logout</a>
               </li>
@@ -93,11 +108,21 @@
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="{% url 'login'%}">Login</a>
               </li>
+<<<<<<< HEAD
               {% endif %}
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="/dashboard">dashboard</a>
               </li>
   
+=======
+             
+              {% endif %}
+
+
+
+
+          
+>>>>>>> 81113e5767a1fb1d131d97ab252cb4e7b706b7b4
             </ul>
           </div>
   
