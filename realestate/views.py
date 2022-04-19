@@ -117,7 +117,7 @@ def agent(request):
 def estate(request):
     return render(request, 'estate.html')
 
-@login_required(login_url = '/login/')
+@login_required(login_url = 'login')
 def bid(request, pk):
     auction_property = get_object_or_404(Properti, id=pk)
     date_now = date.today()
@@ -173,7 +173,7 @@ def propertydetails(request):
 from .permission import is_agent
 
 @is_agent
-@login_required
+@login_required(login_url='login')
 def addproperty(request):
     fm = addprop()
     if request.method == 'POST':
@@ -188,7 +188,7 @@ def addproperty(request):
 
 
 @is_agent
-@login_required
+@login_required(login_url='login')
 def delete(request, pk):
     if request.method == 'POST':
         pi = Properti.objects.get(id=pk)
@@ -196,7 +196,7 @@ def delete(request, pk):
         return redirect('propertydetails')
 
 @is_agent
-@login_required
+@login_required(login_url='login')
 def update_property(request, pk):
     updateprop = get_object_or_404(Properti, id=pk)
     fm = addprop(instance=updateprop)
@@ -210,7 +210,7 @@ def update_property(request, pk):
     return render(request, 'dashboard/update_property.html', {'form':fm, 'updateprop': updateprop})
 
 @is_agent
-@login_required
+@login_required(login_url='login')
 def property_list(request):
     # if request.user.agent.is_approved:
     if request.method == 'GET':
@@ -218,7 +218,7 @@ def property_list(request):
         print (prop)
     return render(request, 'dashboard/property_details.html', {'prop':prop})
 
-@login_required
+@login_required(login_url='login')
 def bidders_list(request,pk):
     if request.method == 'GET':
         prop = get_object_or_404(Properti, id=pk)
