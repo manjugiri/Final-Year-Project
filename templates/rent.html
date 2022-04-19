@@ -115,7 +115,7 @@
 					<div class="fh5co-property">
 						<figure>
 							<img src="{{rent.photo.url}}" alt="" class="img-responsive">
-							<a href="#" class="tag">For Rent</a>
+							<a href="{% url 'property_detail' rent.id %}" class="tag">For Rent</a>
 						</figure>
 						<div class="fh5co-property-innter">
 							<h3><a href="{%url 'property_detail' rent.id%}">{{rent.title}}, {{rent.address}}</a></h3>

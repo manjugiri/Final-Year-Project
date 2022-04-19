@@ -98,7 +98,7 @@
         <div class="fh5co-property">
           <figure>
             <img src="{{properti.photo.url}}" alt="" class="img-responsive" style="height: 150 !important;">
-            <a href="#" class="tag" style="background:#4cb648;">For Sale</a>
+            <a href="{% url 'property_detail' properti.id %}" class="tag" style="background:#4cb648;">For Sale</a>
           </figure>
           <div class="fh5co-property-innter">
             <h3><a href="#">{{properti.title}}, {{properti.area}}</a></h3>
