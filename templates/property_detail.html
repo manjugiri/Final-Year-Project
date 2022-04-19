@@ -21,23 +21,23 @@
                         <div class="single_property_detail">
                             <div class="head">
                                 <h4 class="title mt-4">{{property.title}}</h4>
-                                <span class=""><i class="fas fa-map-marker-alt"></i> {{p.address}} </span>
+                                <span class=""><i class="fas fa-map-marker-alt"></i> {{property.address}} </span>
                             </div>
-                            {{p.description}}<br />
+                            {{property.description}}<br />
                             <div class="more_information my-5 d-inline-block">
                                 <h4 class="inner-title mb-4">More Information</h4>
                                 <ul>
-                                    <li><span>Posted :</span> {{p.timestamp | date}}</li>
-                                    <li><span>Type :</span> {{p.ptype}}</li>
-                                    <li><span>Price :</span>Rs. {{p.price}} {% if p.status == "Rent" %}per
+                                    <li><span>Posted :</span> {{property.timestamp | date}}</li>
+                                    <li><span>Type :</span> {{property.ptype}}</li>
+                                    <li><span>Price :</span>Rs. {{property.price}} {% if property.status == "Rent" %}per
                                         month{% endif %}
                                     </li>
-                                    <li><span>Installment Facility :</span> {{p.has_installment | yesno | capfirst}}
+                                    <li><span>Installment Facility :</span> {{property.has_installment | yesno | capfirst}}
                                     </li>
-                                    <li><span>Insurance :</span> {{p.has_insurance |yesno |capfirst}}</li>
-                                    <li><span>Area :</span> {{p.area}}</li>
+                                    <li><span>Insurance :</span> {{property.has_insurance |yesno |capfirst}}</li>
+                                    <li><span>Area :</span> {{property.area}}</li>
                                     {% if p.video %}<li><span>Video :</span> <a target="blank" class="text-info"
-                                            href="{{p.video}}">Click Here</a>{% endif %}
+                                            href="{{property.video}}">Click Here</a>{% endif %}
                                 </ul>
                             </div>
   
@@ -46,16 +46,16 @@
   
                                 <ul>
                                     <li><i class="text-success fa fa-check"></i> Verified</li>
-                                    {% if p.garage %}<li><i class="text-success fa fa-check"></i> Garage</li>
+                                    {% if property.garage %}<li><i class="text-success fa fa-check"></i> Garage</li>
                                     {% endif %}
-                                    {% if p.swimming_pool %}<li><i class="text-success fa fa-check"></i> Pool</li>
+                                    {% if property.swimming_pool %}<li><i class="text-success fa fa-check"></i> Pool</li>
                                     {% endif %}
-                                    {% if p.bathtub %}<li><i class="text-success fa fa-check"></i> Bathtub</li>
+                                    {% if property.bathtub %}<li><i class="text-success fa fa-check"></i> Bathtub</li>
                                     {% endif %}
-                                    {% if p.ac %}<li><i class="text-success fa fa-check"></i> A.C</li>{% endif %}
-                                    {% if p.internet %}<li><i class="text-success fa fa-check"></i> Internet</li>
+                                    {% if property.ac %}<li><i class="text-success fa fa-check"></i> A.C</li>{% endif %}
+                                    {% if property.internet %}<li><i class="text-success fa fa-check"></i> Internet</li>
                                     {% endif %}
-                                    {% if p.play_ground %}<li><i class="text-success fa fa-check"></i> Play Ground</li>
+                                    {% if property.play_ground %}<li><i class="text-success fa fa-check"></i> Play Ground</li>
                                     {% endif %}
                                 </ul>
   
@@ -79,7 +79,7 @@
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <input hidden class="form-control" type="text" name="property"
-                                                    value="{{p.id}}">
+                                                    value="{{property.id}}">
                                                 <input hidden class="form-control" type="text" name="path"
                                                     value="{{request.path}}">
                                                 {% if user.is_authenticated %}<input class="form-control" type="text"

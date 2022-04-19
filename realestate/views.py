@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
 from django.http import HttpResponse, HttpResponseRedirect
 import re
-
+from datetime import date
 from django.db.models import Q
 from .forms import addprop
 from .forms import apply_agent
@@ -120,6 +120,14 @@ def estate(request):
 @login_required(login_url = '/login/')
 def bid(request, pk):
     auction_property = get_object_or_404(Properti, id=pk)
+    date_now = date.today()
+    end_date = auction_property.bidding_end_time
+    a = f"{end_date.strftime('%Y')}-{end_date.strftime('%m')}-{end_date.strftime('%d')}"
+    print(a)
+    if str(date_now) == a:
+        expired = True
+    else:
+        expired = False
     user = request.user
     try:
         user_bid = Bidders.objects.get(properti = auction_property, user= user).bid_amount
@@ -127,13 +135,13 @@ def bid(request, pk):
         user_bid = 0
     if request.method == 'GET':
         
-        return render(request, 'bid.html', {'auction_property':auction_property, 'status':'','user_bid':user_bid})
+        return render(request, 'bid.html', {'auction_property':auction_property, 'status':'','user_bid':user_bid,'date':expired})
 
     if request.method == 'POST':
         bidamt = request.POST.get('BIdamt',None)
         if int(bidamt) < int(auction_property.price):
             error = f'Bid amount must be grater than {auction_property.price}'
-            return render(request, 'bid.html', {'auction_property':auction_property,'status':error})
+            return render(request, 'bid.html', {'auction_property':auction_property,'status':error,'date':expired})
         
         if Bidders.objects.filter(user=request.user, properti=auction_property).exists():
             Bidders.objects.filter(user=request.user, properti=auction_property).update(bid_amount=bidamt)
@@ -144,8 +152,11 @@ def bid(request, pk):
         except:
             user_bid = 0
 
-        return render(request, 'bid.html', {'auction_property':auction_property,'status':'Bid success','user_bid':user_bid})
+        return render(request, 'bid.html', {'auction_property':auction_property,'status':'Bid success','user_bid':user_bid,'date':expired})
 
+def bid_win(request):
+    bidder = Bidders.objects.filter().first()
+    print(bidder)
 # def applyagent(request):
 #     print("hello")
 #     return render(request, 'dashboard/apply_agent.html')

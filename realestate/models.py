@@ -109,7 +109,12 @@ class Bidders(models.Model):
     properti = models.ForeignKey(Properti, related_name = 'bidders_prop', on_delete=models.CASCADE)
     bid_amount = models.FloatField()
     user = models.ForeignKey(Account, related_name = 'bidder_user', on_delete = models.PROTECT)
-
+    
+    class Meta:
+        ordering = ['-bid_amount']
+    
+    def __str__(self):
+        return str(self.user)
 
 # Bankloan
 class Bank(models.Model):

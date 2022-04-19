@@ -43,6 +43,9 @@ flex-direction: column;">
     {%if auction_property.is_bid_start%}
     <div class="bid-block" style="position: relative;">
         <span>Your Bid:</span><span>{{user_bid}}</span>
+        {% if date%}
+            <span style = "color:red;">Sorry! Bidding date is expired.</span>
+        {% else %}
         <form method="post" action=".">
             {%csrf_token%}
         <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter bid amount">
@@ -56,6 +59,7 @@ flex-direction: column;">
         </div>
         <span style="color: red;">{{status}}</span>
         </form>
+        {% endif %}
     </div>
     <br>
     <br><br>
