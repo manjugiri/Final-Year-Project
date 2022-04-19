@@ -29,14 +29,27 @@ def sellhome(request):
 #     return render()
 
 def buy(request):
-    search = request.GET.get('search') if request.GET.get('search') != None else ''
-    if search:
-        buy = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search) & Q(is_approved= True))
-        content = {'property':buy}
-    else:
-        properti = Properti.objects.filter(status = "Sale", is_approved = True)
-        content = {'property':properti}
-    return render(request, 'buy.html', content)
+    property_type = request.GET.get('property_type', None)
+    sort_by = request.GET.get('sort_by', None)
+    # if search:
+    #     rent_properti = Properti.objects.filter(Q(ptype__icontains = search) | Q(status__icontains = search))
+    # else:
+    #     rent_properti = Properti.objects.filter(status = "Rent")
+    buy_properti = Properti.objects.filter(status="Sale", is_approved=True)
+    if property_type and not property_type=='All':
+        buy_properti =buy_properti.filter(ptype = property_type)
+
+    if sort_by and not sort_by == 'none_':
+        if sort_by == 'lh':
+            buy_properti = buy_properti.order_by('price')
+        else:
+            buy_properti = buy_properti.order_by('-price')
+
+        # price__gte, price__lte
+    content = {'property': buy_properti, 'sort_by':sort_by, 'property_type':property_type}
+
+    return render(request, 'buy.html',content)
+
 
 def homeloan(request):
     loan = Bank.objects.all()
