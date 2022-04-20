@@ -12,7 +12,7 @@
                 <p class="card-text"><b> Name :</b>{{request.user.full_name}}</p><br>
                 <p class="card-text"><b> Email :</b>{{request.user.email}}</p><br>
                 <p class="card-text"><b> Phone :</b> +977-{{request.user.contact}}</p><br>
-                {% if request.user.agent%}
+                {% if request.user.applyagent.is_approved%}
                 <div class="agent-status">
                     verified as agent.
                   </div>

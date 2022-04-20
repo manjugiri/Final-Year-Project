@@ -53,7 +53,7 @@ class Properti(models.Model):
     slug = models.SlugField(blank=True, null=True, unique=True)
     seodescription = models.TextField(blank=True)
     bidding_start_time = models.DateTimeField(blank=True, null=True)
-    bidding_end_time = models.DateTimeField(blank=True, null=True)
+    bidding_end_time = models.DateField(blank=True, null=True)
     is_approved = models.BooleanField(default=False)
 
 

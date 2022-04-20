@@ -48,7 +48,7 @@
                   
                   {%endif%}
                   
-                  {% if request.user.agent == False%}
+                  {% if not request.user.applyagent.is_approved%}
                   <li class="nav-item">
                     
                     <a class="nav-link" href="/applyagent">

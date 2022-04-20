@@ -9,9 +9,24 @@ from .forms import addprop
 from .forms import apply_agent
 from .models import Properti, Bidders, Bank 
 from django.contrib.auth.decorators import login_required
-
+from .helpers import send_message
 # Create your views here.
 def index(request):
+    date_now = date.today()
+    auction_property = Properti.objects.filter(status = "Auction", bidding_end_time =date_now)
+    property = []
+    expired_property =[]
+    for i in auction_property:
+        expired_property.append(i)
+
+    print(expired_property)
+    for j in range(len(expired_property)):
+        bidders = Bidders.objects.filter(properti = expired_property[j]).first()
+        send_message(bidders)
+        all_bidders = Bidders.objects.filter(properti = expired_property[j])
+        all_bidders.delete()
+        expired_property[j].delete()
+    
     return render(request, 'index.html')
 
 
@@ -122,9 +137,10 @@ def bid(request, pk):
     auction_property = get_object_or_404(Properti, id=pk)
     date_now = date.today()
     end_date = auction_property.bidding_end_time
-    a = f"{end_date.strftime('%Y')}-{end_date.strftime('%m')}-{end_date.strftime('%d')}"
-    print(a)
-    if str(date_now) == a:
+    print(end_date)
+    # a = f"{end_date.strftime('%Y')}-{end_date.strftime('%m')}-{end_date.strftime('%d')}"
+    # print(a)
+    if str(date_now) == str(end_date):
         expired = True
     else:
         expired = False
@@ -154,9 +170,8 @@ def bid(request, pk):
 
         return render(request, 'bid.html', {'auction_property':auction_property,'status':'Bid success','user_bid':user_bid,'date':expired})
 
-def bid_win(request):
-    bidder = Bidders.objects.filter().first()
-    print(bidder)
+
+        
 # def applyagent(request):
 #     print("hello")
 #     return render(request, 'dashboard/apply_agent.html')
@@ -179,7 +194,9 @@ def addproperty(request):
     if request.method == 'POST':
         fm = addprop(request.POST,request.FILES)
         if fm.is_valid():
-            fm.save()
+            form = fm.save(commit=False)
+            form.added_by = request.user
+            form.save()
             return redirect('propertydetails')
         else:
             print('form is not valid')
