@@ -1,4 +1,5 @@
 from pyexpat.errors import messages
+from tracemalloc import start
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
 from django.http import HttpResponse, HttpResponseRedirect
@@ -22,7 +23,10 @@ def index(request):
     print(expired_property)
     for j in range(len(expired_property)):
         bidders = Bidders.objects.filter(properti = expired_property[j]).first()
-        send_message(bidders)
+        property = Properti.objects.get(title = expired_property[j])
+        agent = property.added_by
+        print(agent)
+        send_message(bidders,agent)
         all_bidders = Bidders.objects.filter(properti = expired_property[j])
         all_bidders.delete()
         expired_property[j].delete()
@@ -192,10 +196,14 @@ from .permission import is_agent
 def addproperty(request):
     fm = addprop()
     if request.method == 'POST':
+        start_time = request.POST.get("bidding_start_time")
+        end_time = request.POST.get("bidding_end_time")
         fm = addprop(request.POST,request.FILES)
         if fm.is_valid():
             form = fm.save(commit=False)
             form.added_by = request.user
+            form.bidding_start_time = start_time
+            form.bidding_end_time = end_time
             form.save()
             return redirect('propertydetails')
         else:

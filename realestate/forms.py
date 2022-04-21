@@ -9,7 +9,7 @@ class addprop(forms.ModelForm):
     class Meta:
         model = Properti
         fields = '__all__'
-        exclude = ['video','is_approved','added_by']
+        exclude = ['video','is_approved','added_by',]
         
 class apply_agent(forms.ModelForm):
     class Meta:
