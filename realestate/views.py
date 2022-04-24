@@ -202,7 +202,6 @@ def addproperty(request):
         if fm.is_valid():
             form = fm.save(commit=False)
             form.added_by = request.user
-          
             form.save()
             return redirect('propertydetails')
         else:
@@ -259,13 +258,13 @@ def serach_property(request):
     # prop = prop.filter(status =status, ptype = types)
     # print(prop)
     if status and not status=='none':
-        prop = prop.filter(status=status)
+        prop = prop.filter(status__icontains=status)
         print(prop)
     if types and not types == 'none':
-        prop = prop.filter(ptype=types)
+        prop = prop.filter(ptype__icontains=types)
         print(prop)
     if address:
-        prop = prop.filter(address=address)
+        prop = prop.filter(address__icontains=address)
         print(prop)
     return render(request, 'search.html', {'prop':prop})
 
