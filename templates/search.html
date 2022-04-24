@@ -50,53 +50,12 @@
 
 	<div class="fh5co-page-title" style="background-image: url(/static/images/slide_6.jpg);">
 		<h1><span class="colored">Rent</span> Properties</h1>
-<!-- 		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 animate-box">
-					
-				</div>
-			</div>
-		</div> -->
+
 	</div>
 	<div id="best-deal">
-		<!-- <form>
-			<input type="text" placeholder="Search. . . " name = "search">
-
-		</form> -->
-		<div class="col-md-3">
-								<!-- <div class="col-md-12">
-									
-								<form>
-										<select class='form-control' name="property_type" id="select-by-type" onchange="this.form.submit()">
-											
-											<option value="All">Filter By Type</option>
-											<option value="Home" {%if property_type == 'Home'%}selected{%endif%}>Home</option>
-											<option value="Land" {%if property_type == 'Land'%}selected{%endif%}>Land</option>
-											<option value="Room" {%if property_type == 'Room'%}selected{%endif%}>Room</option>
-										</select>
-
-										<input type="hidden" name="sort_by" value="{{sort_by}}">
-									</form>
-
-									</div>
 		
-
-							<div class="col-md-12">
-								<form>
-										<select class='form-control' name="sort_by" id="select-by-type" onchange="this.form.submit()">
-											
-											<option value="none_">Sort By</option>
-											<option value="lh" {%if sort_by == 'lh'%}selected{%endif%}>Low to High</option>
-											<option value="hl" {%if sort_by == 'hl'%}selected{%endif%}>High to Low</option>
-										</select>
-										<input type="hidden" name="property_type" value="{{property_type}}">
-
-									</form>
-										
-								
-							</div> -->
-
+		<div class="col-md-3">
+							
 				</div>
 		<div class="container">
 
@@ -115,12 +74,24 @@
 					<div class="fh5co-property">
 						<figure>
 							<img src="{{rent.photo.url}}" alt="" class="img-responsive">
+							{% if rent.status == "Rent"%}
 							<a href="#" class="tag">For Rent</a>
+							{% elif rent.status == "Sale"%}
+							<a href="#" class="tag">For Sale</a>
+							{% elif rent.status == "Auction"%}
+							<a href="#" class="tag">FOr Bid</a>
+							{% endif %}
+
+
 						</figure>
 						<div class="fh5co-property-innter">
 							<h3><a href="{%url 'property_detail' rent.id%}">{{rent.title}}, {{rent.address}}</a></h3>
 							<div class="price-status">
-		                 	<span class="price">${{rent.price}}<span class="per">/Month</span></span>
+							{% if rent.status == "Sale" or rent.status == "Auction"%}
+		                 	<span class="price">${{rent.price}}</span>
+							{% else %}
+							<span class="price">${{rent.price}}<span class="per">/Month</span></span>
+							{% endif %}
 		               </div>
 		               <p>{{rent.description}}</p>
 	            	</div>

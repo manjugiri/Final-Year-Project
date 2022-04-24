@@ -196,14 +196,11 @@ from .permission import is_agent
 def addproperty(request):
     fm = addprop()
     if request.method == 'POST':
-        start_time = request.POST.get("bidding_start_time")
-        end_time = request.POST.get("bidding_end_time")
         fm = addprop(request.POST,request.FILES)
         if fm.is_valid():
             form = fm.save(commit=False)
             form.added_by = request.user
-            form.bidding_start_time = start_time
-            form.bidding_end_time = end_time
+
             form.save()
             return redirect('propertydetails')
         else:
@@ -260,13 +257,13 @@ def serach_property(request):
     # prop = prop.filter(status =status, ptype = types)
     # print(prop)
     if status and not status=='none':
-        prop = prop.filter(status=status)
+        prop = prop.filter(status__icontains=status)
         print(prop)
     if types and not types == 'none':
-        prop = prop.filter(ptype=types)
+        prop = prop.filter(ptype__icontains=types)
         print(prop)
     if address:
-        prop = prop.filter(address=address)
+        prop = prop.filter(address__icontains=address)
         print(prop)
     return render(request, 'search.html', {'prop':prop})
 
