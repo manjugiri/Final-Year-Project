@@ -112,7 +112,9 @@ def rent(request):
 from django.shortcuts import get_object_or_404
 def property_detail(request, pk):
     property_ = get_object_or_404(Properti, id=pk)
-    return render(request, 'property_detail.html',{'property':property_})
+    print(property_.added_by)
+    agent = ApplyAgent.objects.get(Agency_Email = property_.added_by)
+    return render(request, 'property_detail.html',{'property':property_,'agent':agent })
 
 def auction(request):
     auction_property = Properti.objects.filter(status = 'Auction', is_approved = True)
@@ -196,14 +198,11 @@ from .permission import is_agent
 def addproperty(request):
     fm = addprop()
     if request.method == 'POST':
-        start_time = request.POST.get("bidding_start_time")
-        end_time = request.POST.get("bidding_end_time")
         fm = addprop(request.POST,request.FILES)
         if fm.is_valid():
             form = fm.save(commit=False)
             form.added_by = request.user
-            form.bidding_start_time = start_time
-            form.bidding_end_time = end_time
+          
             form.save()
             return redirect('propertydetails')
         else:

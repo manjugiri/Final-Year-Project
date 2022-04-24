@@ -72,56 +72,21 @@
                             </div>
   
                             <div class="mb-5 star_rating">
-                                <h4 class="inner-title mb-4">Send a message</h4>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <input hidden class="form-control" type="text" name="property"
-                                                    value="{{property.id}}">
-                                                <input hidden class="form-control" type="text" name="path"
-                                                    value="{{request.path}}">
-                                                {% if user.is_authenticated %}<input class="form-control" type="text"
-                                                    name="name" {% if user.is_authenticated %} disabled
-                                                    value="You are logged in as {{user}}" {% endif %}
-                                                    placeholder="Your Name">{% endif %}
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <input class="form-control" type="text" name="name"
-                                                    {% if user.is_authenticated %} hidden
-                                                    value="{{user.first_name}} {{user.last_name}}" {% endif %}
-                                                    placeholder="Your Name">
-                                                {% if user.is_authenticated %}<input hidden type="text" name="user"
-                                                    value="{{user}}">{% endif %}
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <input class="form-control" type="text" name="email"
-                                                    {% if user.is_authenticated %} hidden value="{{user.email}}"
-                                                    {% endif %} placeholder="Your Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <input class="form-control" type="text" name="phone"
-                                                    placeholder="Your Phone Number">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <textarea rows="5" class="form-control resize_none" name="message"
-                                                    placeholder="Your Message"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <input id="send" class="btn btn_primary" value="Send" type="submit">
-                                        </div>
-                                    </div>
-                                </form>
+                                <div class="fh5co-agent">
+                                    <h3><u>Agency Detail: </u></h3>
+                                    <br>
+                                    <figure>
+                                        <img src="{{agent.Agency_logo.url}}" height="300" width="250" >
+                                    </figure>
+                                    <br>
+                                    <h3>Name: <u>{{agent.Agency_name}}</u></h3>
+                                    <h3 style = "margin-top: 20px;">Email: <u>{{agent.Agency_Email}}</u></h3>
+                                    {% if agent.Agency.Description%}
+                                    <p>{{agent.Agency.Description}}</p>
+                                    {% endif %}
+                                    <br>
+                                    <p><a href="tel:{{agent.Agency_Contact}}" class="btn btn-primary btn-outline">Contact Me</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
