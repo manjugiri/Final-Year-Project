@@ -410,7 +410,7 @@ iframe {
   right: 5px;
 }
 
-.alert-validate:hover:before {
+.alert-validate::before {
   visibility: visible;
   opacity: 1;
 }

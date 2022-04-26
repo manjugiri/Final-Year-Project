@@ -95,27 +95,6 @@
   
   
             </div>
-            <div class="col-lg-4">
-                <div class="property_sidebar mt_md_50">
-  
-                    <div class="property_listing sidebar-widget">
-                        <h4 class="widget-title mb-4">Property Summary</h4>
-                        <ul>
-                            <li><span>Listing Type :</span> For {{p.status}}</li>
-                            <li><span>Property Type :</span> {{p.ptype}}</li>
-                            <li><span>Price :</span> Rs. {{p.price}} {% if p.status == "Rent" %}per
-                                month{% endif %}</li>
-                            <li><span>Area :</span> {{p.area}}</li>
-                            {% if p.video %}<li><span>Video :</span> <a class="text_secondary"
-                                    href="{{p.video}}">Here</a>
-                            </li>{% endif %}
-                        </ul>
-                    </div>
-  
-  
-  
-                </div>
-            </div>
         </div>
     </div>
   </section>

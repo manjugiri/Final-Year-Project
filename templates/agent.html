@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading black animate-box" data-animate-effect="fadeIn">
 					<h2>Our Trusted Agents</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					<p>Varified agent just for you. You can fully trust our agent to any kind for real estate business. REMS is always with you. </p>
 				</div>
 
 				{%for i in agent%}
@@ -36,11 +36,6 @@
 							{%for j in i.total_rating%}
 							<i class="fa fa-star" aria-hidden="true"></i>
 							{%endfor%}
-							<!-- <i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i> -->
-
 						</div>
 						{%else%}
 						<div class="test-rate" style="font-size:16px;color:#808080;">
@@ -57,7 +52,7 @@
 						
 						
 						<p style="margin-left: 80px;">
-						<form method="post" action="{%url 'agent'%}" style="margin-left-250px;">
+						<form method="post" action="{%url 'agent'%}" style="margin-right: 30px;">
 							{%csrf_token%}
 						<select class="form-control btn btn-secondary dropdown-toggle" style="width:150px; border-radius: 0%; text-align: center; margin-left:40px;" onchange="this.form.submit()" name="rating_value">
 							<option value="none">Rate Agent</option>
@@ -77,29 +72,7 @@
 				{%endfor%}
 				
 			</div>
-			<div class="row">
-				<div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
-					<nav>
-					  <ul class="pagination">
-					    <li class="disabled">
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li class="active"><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-					</nav>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 
