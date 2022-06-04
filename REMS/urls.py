@@ -10,9 +10,8 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('realestate.urls')),
-    path('account/', include('accounts.urls'))
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': setting.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve,
-        {'document_root': setting.STATIC_ROOT}),
+    path('account/', include('accounts.urls')),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
